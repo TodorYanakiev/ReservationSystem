@@ -16,7 +16,7 @@ namespace BusinessLogic.Services
             _context = context;
         }
 
-        public void CreateSingleOperationgHour(OperatingHour operatingHour)
+        public void CreateSingleOperatingHour(OperatingHour operatingHour)
         {
             _context.OperatingHours.Add(operatingHour);
             _context.SaveChanges();
@@ -58,6 +58,11 @@ namespace BusinessLogic.Services
             _context.Reservations.RemoveRange(operatingHour.Reservations);
             _context.OperatingHours.Remove(operatingHour);
             _context.SaveChanges();
+        }
+
+        private void CheckSingleOperatingHour(OperatingHour operatingHour)
+        {
+            
         }
     }
 }
