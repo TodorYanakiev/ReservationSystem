@@ -56,7 +56,12 @@ namespace BusinessLogic.Services
         {
             return _context.OperatingHours.ToList();
         }
-      
+
+        public List<OperatingHour> GetOperatingHoursForByTableId(int tableId)
+        {
+            return _context.OperatingHours.Where(oh => oh.TableId == tableId).ToList();
+        }
+
         public void DeleteOperatingHour(OperatingHour operatingHour)
         {
             //TODO send email to canceled reservations
