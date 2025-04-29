@@ -52,6 +52,11 @@ namespace BusinessLogic.Services
             }
         }
 
+        public List<OperatingHour> GetAllOperatingHours()
+        {
+            return _context.OperatingHours.ToList();
+        }
+      
         public void DeleteOperatingHour(OperatingHour operatingHour)
         {
             //TODO send email to canceled reservations
