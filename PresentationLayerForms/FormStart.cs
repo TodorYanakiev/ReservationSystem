@@ -9,8 +9,8 @@ namespace PresentationLayerForms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FormAdmin formAdmin = new FormAdmin();
-            formAdmin.Show();
+            FormLogInAdmin formLogInAdmin = new FormLogInAdmin();
+            formLogInAdmin.Show();
             this.Hide();
         }
 

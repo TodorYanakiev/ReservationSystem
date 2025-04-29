@@ -40,7 +40,7 @@
             // 
             btnUser.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnUser.ForeColor = SystemColors.HotTrack;
-            btnUser.Location = new Point(116, 187);
+            btnUser.Location = new Point(116, 211);
             btnUser.Name = "btnUser";
             btnUser.Size = new Size(251, 70);
             btnUser.TabIndex = 6;
@@ -51,7 +51,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(314, 84);
+            label2.Location = new Point(314, 110);
             label2.Name = "label2";
             label2.Size = new Size(212, 38);
             label2.TabIndex = 5;
@@ -61,7 +61,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(222, 35);
+            label1.Location = new Point(222, 61);
             label1.Name = "label1";
             label1.Size = new Size(395, 38);
             label1.TabIndex = 4;
@@ -71,7 +71,7 @@
             // 
             button1.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = SystemColors.HotTrack;
-            button1.Location = new Point(106, 292);
+            button1.Location = new Point(106, 316);
             button1.Name = "button1";
             button1.Size = new Size(271, 70);
             button1.TabIndex = 7;
@@ -82,7 +82,7 @@
             // 
             button2.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = SystemColors.HotTrack;
-            button2.Location = new Point(474, 187);
+            button2.Location = new Point(474, 211);
             button2.Name = "button2";
             button2.Size = new Size(251, 70);
             button2.TabIndex = 8;
@@ -94,7 +94,7 @@
             // 
             button3.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button3.ForeColor = SystemColors.HotTrack;
-            button3.Location = new Point(460, 292);
+            button3.Location = new Point(460, 316);
             button3.Name = "button3";
             button3.Size = new Size(276, 70);
             button3.TabIndex = 9;
