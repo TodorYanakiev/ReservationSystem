@@ -57,9 +57,14 @@ namespace BusinessLogic.Services
             return _context.OperatingHours.ToList();
         }
 
-        public List<OperatingHour> GetOperatingHoursForByTableId(int tableId)
+        public List<OperatingHour> GetOperatingHoursByTableId(int tableId)
         {
             return _context.OperatingHours.Where(oh => oh.TableId == tableId).ToList();
+        }
+
+        public List<OperatingHour> GetOperatingHoursByDayOfWeek(string dayOfWeek)
+        {
+            return _context.OperatingHours.Where(oh => oh.DayOfWeek.Equals(dayOfWeek)).ToList();
         }
 
         public void DeleteOperatingHour(OperatingHour operatingHour)
