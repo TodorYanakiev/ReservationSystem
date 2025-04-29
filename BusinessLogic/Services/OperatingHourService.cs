@@ -18,6 +18,8 @@ namespace BusinessLogic.Services
 
         public void CreateSingleOperatingHour(OperatingHour operatingHour)
         {
+            if (!CanSingleOperatingHourBeSaved(operatingHour))
+                throw new ArgumentException("The requested operating hour is overlapping with existing one.");
             _context.OperatingHours.Add(operatingHour);
             _context.SaveChanges();
         }
@@ -43,12 +45,10 @@ namespace BusinessLogic.Services
                             newHour.StartTime = startingHours[i];
                             newHour.EndTime = endingHours[i];
                             newHour.TableId = tableId;
-                            operatingHours.Add(newHour);
+                            CreateSingleOperatingHour(newHour);
                         }
                     }
                 }
-                _context.OperatingHours.AddRange(operatingHours);
-                _context.SaveChanges();
             }
         }
 
@@ -60,9 +60,23 @@ namespace BusinessLogic.Services
             _context.SaveChanges();
         }
 
-        private void CheckSingleOperatingHour(OperatingHour operatingHour)
+        private bool CanSingleOperatingHourBeSaved(OperatingHour operatingHour)
         {
-            
+            List<OperatingHour> potentialProblemOperatingHours = _context.OperatingHours
+                .Where(oh => oh.TableId == operatingHour.TableId)
+                .Where(oh => oh.DayOfWeek.Equals(operatingHour.DayOfWeek))
+                .ToList();
+
+            foreach (OperatingHour potentialProblem in potentialProblemOperatingHours)
+            {
+                //check if there is existing operating hour that overlaps with the requested
+                if (!(potentialProblem.EndTime <= operatingHour.StartTime
+                    || potentialProblem.StartTime >= operatingHour.EndTime))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
