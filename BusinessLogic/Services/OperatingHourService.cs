@@ -67,6 +67,21 @@ namespace BusinessLogic.Services
             return _context.OperatingHours.Where(oh => oh.DayOfWeek.Equals(dayOfWeek)).ToList();
         }
 
+        public void UpdateOperatingHour(OperatingHour newHour)
+        {
+            CanSingleOperatingHourBeSaved(newHour);
+            var existingHour = _context.OperatingHours.FirstOrDefault(oh => oh.Id == newHour.Id);
+            if (existingHour == null)
+                throw new ArgumentException("The operating hour does not exist with id " + newHour.Id);
+            existingHour.DayOfWeek = newHour.DayOfWeek;
+            existingHour.StartTime = newHour.StartTime;
+            existingHour.EndTime = newHour.EndTime;
+            existingHour.TableId = newHour.TableId;
+            existingHour.Table = newHour.Table;
+
+            _context.SaveChanges();
+        }
+
         public void DeleteOperatingHour(OperatingHour operatingHour)
         {
             //TODO send email to canceled reservations
