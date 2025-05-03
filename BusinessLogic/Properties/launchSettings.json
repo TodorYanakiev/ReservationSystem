@@ -1,10 +1,7 @@
 {
   "profiles": {
     "BusinessLogic": {
-      "commandName": "Project",
-      "environmentVariables": {
-        "SMTP_PASSWORD": "fycz osor azsz xprx"
-      }
+      "commandName": "Project"
     }
   }
 }

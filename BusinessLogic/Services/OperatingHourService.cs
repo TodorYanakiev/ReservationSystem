@@ -1,4 +1,5 @@
-﻿using ReservationSystem.Models;
+﻿using BusinessLogic.Services.Email;
+using ReservationSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,7 +85,19 @@ namespace BusinessLogic.Services
 
         public void DeleteOperatingHour(OperatingHour operatingHour)
         {
-            //TODO send email to canceled reservations
+            //Sned email for the cancelled reservations to the users
+            var emailService = new EmailService(new SmtpSettings());
+            List<Reservation> reservations = _context.Reservations
+                .Where(reservation => reservation.OperatingHours.Id == operatingHour.Id)
+                .ToList();
+            foreach (Reservation reservation in reservations)
+            {
+                emailService.SendEmailAsync(reservation.Email, "Cancelled reservation"
+                    , $"Your reservation for {reservation.ReservationDate} at " +
+                    $"{operatingHour.StartTime} - {operatingHour.EndTime} is cancelled. " +
+                    $"Sorry for the inconvenience.");
+            }
+
             _context.Reservations.RemoveRange(operatingHour.Reservations);
             _context.OperatingHours.Remove(operatingHour);
             _context.SaveChanges();
