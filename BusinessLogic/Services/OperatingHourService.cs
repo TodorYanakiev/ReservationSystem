@@ -30,24 +30,25 @@ namespace BusinessLogic.Services
             if (startingHours.Count != endingHours.Count)
             {
                 throw new ArgumentException("The number of starting and ending hours must be the same.");
-                List<OperatingHour> operatingHours = new List<OperatingHour>();
-                foreach (string workingDay in workingDays)
+            }
+
+            List<OperatingHour> operatingHours = new List<OperatingHour>();
+            foreach (string workingDay in workingDays)
+            {
+                for (int i = 0; i < startingHours.Count; i++)
                 {
-                    for (int i = 0; i < startingHours.Count; i++)
+                    if (startingHours[i] > endingHours[i])
                     {
-                        if (startingHours[i] > endingHours[i])
-                        {
-                            throw new ArgumentException($"Ending hour {endingHours[i]} is before {startingHours[i]}.");
-                        }
-                        foreach (int tableId in tableIds)
-                        {
-                            OperatingHour newHour = new OperatingHour();
-                            newHour.DayOfWeek = workingDay;
-                            newHour.StartTime = startingHours[i];
-                            newHour.EndTime = endingHours[i];
-                            newHour.TableId = tableId;
-                            CreateSingleOperatingHour(newHour);
-                        }
+                        throw new ArgumentException($"Ending hour {endingHours[i]} is before {startingHours[i]}.");
+                    }
+                    foreach (int tableId in tableIds)
+                    {
+                        OperatingHour newHour = new OperatingHour();
+                        newHour.DayOfWeek = workingDay;
+                        newHour.StartTime = startingHours[i];
+                        newHour.EndTime = endingHours[i];
+                        newHour.TableId = tableId;
+                        CreateSingleOperatingHour(newHour);
                     }
                 }
             }
