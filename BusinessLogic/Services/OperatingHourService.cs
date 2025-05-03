@@ -1,10 +1,5 @@
 ﻿using BusinessLogic.Services.Email;
 using ReservationSystem.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic.Services
 {
@@ -19,8 +14,7 @@ namespace BusinessLogic.Services
 
         public void CreateSingleOperatingHour(OperatingHour operatingHour)
         {
-            if (!CanSingleOperatingHourBeSaved(operatingHour))
-                throw new ArgumentException("The requested operating hour is overlapping with existing one.");
+            CheckSingleOperatingHourIfCanBeSaved(operatingHour);
             _context.OperatingHours.Add(operatingHour);
             _context.SaveChanges();
         }
@@ -71,7 +65,7 @@ namespace BusinessLogic.Services
 
         public void UpdateOperatingHour(OperatingHour newHour)
         {
-            CanSingleOperatingHourBeSaved(newHour);
+            CheckSingleOperatingHourIfCanBeSaved(newHour);
             var existingHour = _context.OperatingHours.FirstOrDefault(oh => oh.Id == newHour.Id);
             if (existingHour == null)
                 throw new ArgumentException("The operating hour does not exist with id " + newHour.Id);
@@ -86,6 +80,7 @@ namespace BusinessLogic.Services
 
         public void DeleteOperatingHour(OperatingHour operatingHour)
         {
+            //TODO fix deleting reservations
             //Sned email for the cancelled reservations to the users
             var emailService = new EmailService(new SmtpSettings());
             List<Reservation> reservations = _context.Reservations
@@ -104,8 +99,11 @@ namespace BusinessLogic.Services
             _context.SaveChanges();
         }
 
-        private bool CanSingleOperatingHourBeSaved(OperatingHour operatingHour)
+        private void CheckSingleOperatingHourIfCanBeSaved(OperatingHour operatingHour)
         {
+            if (operatingHour.EndTime < operatingHour.StartTime)
+                throw new ArgumentException("The ending hour is before the staring hour.");
+
             List<OperatingHour> potentialProblemOperatingHours = _context.OperatingHours
                 .Where(oh => oh.TableId == operatingHour.TableId)
                 .Where(oh => oh.DayOfWeek.Equals(operatingHour.DayOfWeek))
@@ -117,10 +115,9 @@ namespace BusinessLogic.Services
                 if (!(potentialProblem.EndTime <= operatingHour.StartTime
                     || potentialProblem.StartTime >= operatingHour.EndTime))
                 {
-                    return false;
+                    throw new ArgumentException("The requested operating hour is overlapping with existing one.");
                 }
             }
-            return true;
         }
     }
 }
