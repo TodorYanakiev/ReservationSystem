@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Services
 {
-    internal class ReservationService
+    public class ReservationService
     {
     }
 }

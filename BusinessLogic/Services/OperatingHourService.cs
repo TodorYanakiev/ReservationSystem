@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Services
 {
-    internal class OperatingHourService
+    public class OperatingHourService
     {
         private readonly RestaurantDbContext _context;
 

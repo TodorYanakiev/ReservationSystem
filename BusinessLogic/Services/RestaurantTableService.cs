@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BusinessLogic.Services
 {
-    internal class RestaurantTableService
+    public class RestaurantTableService
     {
         private readonly RestaurantDbContext _context;
 
