@@ -109,6 +109,16 @@ namespace BusinessLogic.Services
             _context.SaveChanges();
         }
 
+        public void DeleteReservation(Reservation reservation)
+        {
+            var optionalReservation = _context.Reservations.FirstOrDefault(res => res.Id == reservation.Id);
+            if (optionalReservation == null)
+                throw new ArgumentException("The requested reservation does not exist.");
+
+            _context.Reservations.Remove(optionalReservation);
+            _context.SaveChanges();
+        }
+
         private string CreateVerificationCodeForReservation()
         {
             char[] code = new char[8];
