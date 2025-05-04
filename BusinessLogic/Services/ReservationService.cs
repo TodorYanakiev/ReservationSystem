@@ -63,6 +63,13 @@ namespace BusinessLogic.Services
             return _context.Reservations.Where(res => res.TableId == tableId).ToList();
         }
 
+        public List<Reservation> GetAllReservationsForTimePeriod(DateOnly start, DateOnly end)
+        {
+            return _context.Reservations
+                .Where(res => res.ReservationDate >= start && res.ReservationDate <= end)
+                .ToList();
+        }
+
         public void UpdateReservation(Reservation reservation)
         {
             CheckIfThereIsReservationWithTheSameDateAndTimeForTable(reservation);
