@@ -7,7 +7,7 @@ namespace PresentationLayerForms
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnAdmin_Click(object sender, EventArgs e)
         {
             FormLogInAdmin formLogInAdmin = new FormLogInAdmin();
             formLogInAdmin.Show();
@@ -19,6 +19,11 @@ namespace PresentationLayerForms
             FormReservation formReservation = new FormReservation();
             formReservation.Show();
             this.Hide();
+        }
+
+        private void FormStart_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
