@@ -90,8 +90,6 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.FormAdmin;
-            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(923, 497);
             Controls.Add(button1);
             Controls.Add(flowLayoutPanel1);
