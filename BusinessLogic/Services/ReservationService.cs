@@ -70,6 +70,11 @@ namespace BusinessLogic.Services
                 .ToList();
         }
 
+        public List<Reservation> GetAllReservationsByDate(DateOnly date)
+        {
+            return _context.Reservations.Where(res => res.ReservationDate == date).ToList();
+        }
+
         public void UpdateReservation(Reservation reservation)
         {
             CheckIfThereIsReservationWithTheSameDateAndTimeForTable(reservation);
