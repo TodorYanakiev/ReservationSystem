@@ -53,6 +53,14 @@ namespace BusinessLogic.Services
             _context.SaveChanges();
         }
 
+        public Reservation GetReservationById(int id)
+        {
+            var optionalReservation = _context.Reservations.FirstOrDefault(res => res.Id == id);
+            if (optionalReservation == null)
+                throw new ArgumentException("The requested reservaton does not exist.");
+            return optionalReservation;
+        }
+
         public List<Reservation> GetAllReservations()
         {
             return _context.Reservations.ToList();
