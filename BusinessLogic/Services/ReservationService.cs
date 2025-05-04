@@ -119,6 +119,13 @@ namespace BusinessLogic.Services
             _context.SaveChanges();
         }
 
+        public void DeleteAllReservationsByTableId(int tableId)
+        {
+            List<Reservation> reservations = _context.Reservations.Where(res => res.TableId == tableId).ToList();
+            _context.Reservations.RemoveRange(reservations);
+            _context.SaveChanges();
+        }
+
         private string CreateVerificationCodeForReservation()
         {
             char[] code = new char[8];
