@@ -53,6 +53,11 @@ namespace BusinessLogic.Services
             _context.SaveChanges();
         }
 
+        public List<Reservation> GetAllReservations()
+        {
+            return _context.Reservations.ToList();
+        }
+
         public void UpdateReservation(Reservation reservation)
         {
             CheckIfThereIsReservationWithTheSameDateAndTimeForTable(reservation);
