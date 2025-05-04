@@ -38,6 +38,21 @@ namespace BusinessLogic.Services
                 $"Your verification code is: {reservation.VerificationCode}");
         }
 
+        public void VerifyReservation(Reservation reservation, string code)
+        {
+            var optinalReservation = _context.Reservations.FirstOrDefault(res => res.Id == reservation.Id);
+            if (optinalReservation == null)
+                throw new ArgumentException("The requested reservation does not exist.");
+
+            if ((bool)optinalReservation.VerifiedByUser)
+                throw new ArgumentException("The reservation is already verified.");
+
+            if (!optinalReservation.VerificationCode.Equals(code))
+                throw new ArgumentException("Invalid verification code.");
+            optinalReservation.VerifiedByUser = true;
+            _context.SaveChanges();
+        }
+
         public void UpdateReservation(Reservation reservation)
         {
             CheckIfThereIsReservationWithTheSameDateAndTimeForTable(reservation);
