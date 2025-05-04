@@ -58,6 +58,11 @@ namespace BusinessLogic.Services
             return _context.Reservations.ToList();
         }
 
+        public List<Reservation> GetAllReservationsByTableId(int tableId)
+        {
+            return _context.Reservations.Where(res => res.TableId == tableId).ToList();
+        }
+
         public void UpdateReservation(Reservation reservation)
         {
             CheckIfThereIsReservationWithTheSameDateAndTimeForTable(reservation);
