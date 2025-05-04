@@ -70,6 +70,14 @@ namespace BusinessLogic.Services
                 .ToList();
         }
 
+        public List<Reservation> GetAllReservationsForTimePeriodAdnTableId(DateOnly start, DateOnly end, int tableId)
+        {
+            return _context.Reservations
+                .Where(res => res.ReservationDate >= start && res.ReservationDate <= end)
+                .Where(res => res.TableId == tableId)
+                .ToList();
+        }
+
         public List<Reservation> GetAllReservationsByDate(DateOnly date)
         {
             return _context.Reservations.Where(res => res.ReservationDate == date).ToList();
