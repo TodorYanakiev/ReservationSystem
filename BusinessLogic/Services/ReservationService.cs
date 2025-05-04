@@ -26,7 +26,7 @@ namespace BusinessLogic.Services
 
         public async void CreateReservation(Reservation reservation)
         {
-            //TODOR fix email sending
+            //TODO fix email sending
             CheckIfThereIsReservationWithTheSameDateAndTimeForTable(reservation);
             reservation.VerificationCode = CreateVerificationCodeForReservation();
             reservation.VerifiedByUser = false;
@@ -36,6 +36,24 @@ namespace BusinessLogic.Services
 
             emailService.SendEmailAsync(reservation.Email, "Verification code",
                 $"Your verification code is: {reservation.VerificationCode}");
+        }
+
+        public void UpdateReservation(Reservation reservation)
+        {
+            CheckIfThereIsReservationWithTheSameDateAndTimeForTable(reservation);
+
+            var optinalReservation = _context.Reservations.FirstOrDefault(res => res.Id == reservation.Id);
+            if (optinalReservation == null)
+                throw new ArgumentException("The requested reservation does not exist.");
+            optinalReservation.Name = reservation.Name;
+            optinalReservation.Email = reservation.Email;
+            optinalReservation.PhoneNumber = reservation.PhoneNumber;
+            optinalReservation.TableId = reservation.TableId;
+            optinalReservation.OperatingHoursId = reservation.OperatingHoursId;
+            optinalReservation.ReservationDate = reservation.ReservationDate;
+            optinalReservation.Notes = reservation.Notes;
+            
+            _context.SaveChanges();
         }
 
         private string CreateVerificationCodeForReservation()
@@ -59,7 +77,7 @@ namespace BusinessLogic.Services
                 .ToList();
             foreach (Reservation reservation in reservationsForTable)
             {
-                if (reservation.ReservationDate == reservationForCheck.ReservationDate)
+                if (reservation.ReservationDate == reservationForCheck.ReservationDate && reservation.Id != reservationForCheck.Id)
                     throw new ArgumentException("There is existing reservation for this date and time.");
             }
         }
