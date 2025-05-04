@@ -99,6 +99,32 @@ namespace BusinessLogic.Services
                 .ToList();
         }
 
+        public List<Reservation> GetReservations(DateOnly? startDate = null
+            , DateOnly? endDate = null, DateOnly? exactDate = null, int? tableId = null)
+        {
+            var query = _context.Reservations.AsQueryable();
+
+            if (exactDate.HasValue)
+            {
+                query = query.Where(res => res.ReservationDate == exactDate.Value);
+            }
+            else
+            {
+                if (startDate.HasValue)
+                    query = query.Where(res => res.ReservationDate >= startDate.Value);
+                if (endDate.HasValue)
+                    query = query.Where(res => res.ReservationDate <= endDate.Value);
+            }
+
+            if (tableId.HasValue)
+            {
+                query = query.Where(res => res.TableId == tableId.Value);
+            }
+
+            return query.ToList();
+        }
+
+
         public void UpdateReservation(Reservation reservation)
         {
             CheckIfThereIsReservationWithTheSameDateAndTimeForTable(reservation);
@@ -113,7 +139,7 @@ namespace BusinessLogic.Services
             optinalReservation.OperatingHoursId = reservation.OperatingHoursId;
             optinalReservation.ReservationDate = reservation.ReservationDate;
             optinalReservation.Notes = reservation.Notes;
-            
+
             _context.SaveChanges();
         }
 
