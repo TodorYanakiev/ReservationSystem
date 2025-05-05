@@ -24,9 +24,8 @@ namespace BusinessLogic.Services
 
         }
 
-        public async void CreateReservation(Reservation reservation)
+        public async Task CreateReservation(Reservation reservation)
         {
-            //TODO fix email sending
             CheckIfThereIsReservationWithTheSameDateAndTimeForTable(reservation);
             reservation.VerificationCode = CreateVerificationCodeForReservation();
             reservation.VerifiedByUser = false;
@@ -34,7 +33,7 @@ namespace BusinessLogic.Services
             _context.Reservations.Add(reservation);
             _context.SaveChanges();
 
-            emailService.SendEmailAsync(reservation.Email, "Verification code",
+            await emailService.SendEmailAsync(reservation.Email, "Verification code",
                 $"Your verification code is: {reservation.VerificationCode}");
         }
 
