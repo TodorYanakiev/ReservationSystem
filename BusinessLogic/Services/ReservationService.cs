@@ -124,7 +124,7 @@ namespace BusinessLogic.Services
         }
 
 
-        public void UpdateReservation(Reservation reservation)
+        public async Task UpdateReservation(Reservation reservation)
         {
             CheckIfThereIsReservationWithTheSameDateAndTimeForTable(reservation);
 
@@ -140,9 +140,12 @@ namespace BusinessLogic.Services
             optinalReservation.Notes = reservation.Notes;
 
             _context.SaveChanges();
+
+            await emailService.SendEmailAsync(optinalReservation.Email, "Updated reservation"
+                    , $"Your reservation for {reservation.ReservationDate} is updated.");
         }
 
-        public void DeleteReservation(Reservation reservation)
+        public async Task DeleteReservation(Reservation reservation)
         {
             var optionalReservation = _context.Reservations.FirstOrDefault(res => res.Id == reservation.Id);
             if (optionalReservation == null)
@@ -150,13 +153,24 @@ namespace BusinessLogic.Services
 
             _context.Reservations.Remove(optionalReservation);
             _context.SaveChanges();
+
+            await emailService.SendEmailAsync(reservation.Email, "Cancelled reservation"
+                    , $"Your reservation for {reservation.ReservationDate} is annuled." +
+                $"Sorry for the inconvenience.");
         }
 
-        public void DeleteAllReservationsByTableId(int tableId)
+        public async Task DeleteAllReservationsByTableId(int tableId)
         {
             List<Reservation> reservations = _context.Reservations.Where(res => res.TableId == tableId).ToList();
             _context.Reservations.RemoveRange(reservations);
             _context.SaveChanges();
+
+            foreach (Reservation reservation in reservations)
+            {
+                await emailService.SendEmailAsync(reservation.Email, "Cancelled reservation"
+                    , $"Your reservation for {reservation.ReservationDate} is annuled." + 
+                $"Sorry for the inconvenience.");
+            }
         }
 
         private string CreateVerificationCodeForReservation()
