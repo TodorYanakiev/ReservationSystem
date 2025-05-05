@@ -78,23 +78,21 @@ namespace BusinessLogic.Services
             _context.SaveChanges();
         }
 
-        public void DeleteOperatingHour(OperatingHour operatingHour)
+        public async Task DeleteOperatingHour(OperatingHour operatingHour)
         {
-            //TODO fix deleting reservations
-            //Sned email for the cancelled reservations to the users
             var emailService = new EmailService(new SmtpSettings());
             List<Reservation> reservations = _context.Reservations
                 .Where(reservation => reservation.OperatingHours.Id == operatingHour.Id)
                 .ToList();
             foreach (Reservation reservation in reservations)
             {
-                emailService.SendEmailAsync(reservation.Email, "Cancelled reservation"
+                await emailService.SendEmailAsync(reservation.Email, "Cancelled reservation"
                     , $"Your reservation for {reservation.ReservationDate} at " +
                     $"{operatingHour.StartTime} - {operatingHour.EndTime} is cancelled. " +
                     $"Sorry for the inconvenience.");
             }
 
-            _context.Reservations.RemoveRange(operatingHour.Reservations);
+            _context.Reservations.RemoveRange(reservations);
             _context.OperatingHours.Remove(operatingHour);
             _context.SaveChanges();
         }
