@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PresentationLayerConsole.ReservationSystem.Menu;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,12 @@ namespace PresentationLayerConsole
     internal class Display
     {
         private readonly ReservationMenu _reservationMenu;
+        private readonly AdminMenu _adminMenu;
 
         public Display()
         {
             _reservationMenu = new ReservationMenu();
+            _adminMenu = new AdminMenu();
         }
         public void Start()
         {
@@ -36,7 +39,7 @@ namespace PresentationLayerConsole
                     }
                     else if (choice == 2)
                     {
-                        // TODO: Добави логика за администратор
+                        _adminMenu.ShowMenu();
                         break;
                     }
                 }
