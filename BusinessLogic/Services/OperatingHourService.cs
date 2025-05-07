@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Services.Email;
 using ReservationSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BusinessLogic.Services
 {
@@ -50,17 +51,17 @@ namespace BusinessLogic.Services
 
         public List<OperatingHour> GetAllOperatingHours()
         {
-            return _context.OperatingHours.ToList();
+            return _context.OperatingHours.Include(oh => oh.Table).ToList();
         }
 
         public List<OperatingHour> GetOperatingHoursByTableId(int tableId)
         {
-            return _context.OperatingHours.Where(oh => oh.TableId == tableId).ToList();
+            return _context.OperatingHours.Include(oh => oh.Table).Where(oh => oh.TableId == tableId).ToList();
         }
 
         public List<OperatingHour> GetOperatingHoursByDayOfWeek(string dayOfWeek)
         {
-            return _context.OperatingHours.Where(oh => oh.DayOfWeek.Equals(dayOfWeek)).ToList();
+            return _context.OperatingHours.Include(oh => oh.Table).Where(oh => oh.DayOfWeek.Equals(dayOfWeek)).ToList();
         }
 
         public void UpdateOperatingHour(OperatingHour newHour)
