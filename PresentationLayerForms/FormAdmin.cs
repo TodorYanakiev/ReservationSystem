@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReservationSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,29 +8,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic.Services;
 
 namespace PresentationLayerForms
 {
     public partial class FormAdmin : Form
     {
+        private readonly ReservationService reservationService;
         public FormAdmin()
         {
+            reservationService = new ReservationService(new RestaurantDbContext());
             InitializeComponent();
             GenerateReservationList();
         }
 
         private void GenerateReservationList()
         {
-            // 5 резервации (замени с реални от базата по-късно)
-            for (int i = 1; i <= 5; i++)
+            List<Reservation> reservations = reservationService.GetAllReservations();
+            int size = reservations.Count;
+            for (int i = 0; i < size; i++)
             {
+                Reservation reservation = reservations[i];
                 Panel reservationPanel = new Panel();
                 reservationPanel.Size = new Size(600, 60);
                 reservationPanel.BackColor = Color.LightGray;
                 reservationPanel.Margin = new Padding(10);
 
                 Label lbl = new Label();
-                lbl.Text = $"Резервация №{i}: Иван Иванов - 12.05.2025 19:00ч";
+                lbl.Text = $"Резервация №{reservation.Id}: {reservation.Name} - {reservation.ReservationDate} " +
+                    $"{reservation.OperatingHours.StartTime}ч до {reservation.OperatingHours.EndTime}";
                 lbl.AutoSize = true;
                 lbl.Location = new Point(10, 10);
 

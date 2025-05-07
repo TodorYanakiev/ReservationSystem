@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace BusinessLogic.Services
 {
@@ -62,7 +63,10 @@ namespace BusinessLogic.Services
 
         public List<Reservation> GetAllReservations()
         {
-            return _context.Reservations.ToList();
+            return _context.Reservations
+                .Include(r => r.OperatingHours)
+                .Include(r => r.Table)
+                .ToList();    
         }
 
         public List<Reservation> GetAllReservationsByTableId(int tableId)
