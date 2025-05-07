@@ -66,5 +66,10 @@ namespace PresentationLayerForms
         {
 
         }
+
+        private void btnNewAdminAccount_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
