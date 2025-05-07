@@ -22,11 +22,27 @@ namespace PresentationLayerForms
             GenerateReservationList();
         }
 
-        private void GenerateReservationList()
+        private void GenerateReservationList(
+            DateOnly? startDate = null,
+            DateOnly? endDate = null,
+            DateOnly? exactDate = null,
+            int? tableId = null,
+            bool? isVerified = null,
+            bool? includePassed = null,
+            bool? includeCancelled = null)
         {
             flowLayoutPanel1.Controls.Clear();
-            List<Reservation> reservations = reservationService.GetAllReservations();
-            int size = reservations.Count;
+
+            List<Reservation> reservations = reservationService.GetReservations(
+                startDate: startDate,
+                endDate: endDate,
+                exactDate: exactDate,
+                tableId: tableId,
+                isVerified: isVerified,
+                includePassed: includePassed,
+                includeCancelled: includeCancelled
+            );
+
             foreach (var reservation in reservations)
             {
                 Panel reservationPanel = new Panel();
@@ -36,7 +52,7 @@ namespace PresentationLayerForms
 
                 Label lbl = new Label();
                 lbl.Text = $"Резервация №{reservation.Id}: {reservation.Name} - {reservation.ReservationDate} " +
-                    $"{reservation.OperatingHours.StartTime}ч до {reservation.OperatingHours.EndTime}ч";
+                           $"{reservation.OperatingHours?.StartTime}ч до {reservation.OperatingHours?.EndTime}ч";
                 lbl.AutoSize = true;
                 lbl.Location = new Point(10, 10);
 
@@ -44,8 +60,7 @@ namespace PresentationLayerForms
                 btnEdit.Text = "Редактирай";
                 btnEdit.Location = new Point(400, 5);
                 btnEdit.Size = new Size(100, 30);
-                btnEdit.Tag = reservation.Id; // Store reservation ID in the button tag
-                //btnEdit.Click += BtnEdit_Click;
+                btnEdit.Tag = reservation.Id;
 
                 Button btnDelete = new Button();
                 btnDelete.Text = "Изтрий";
@@ -61,6 +76,7 @@ namespace PresentationLayerForms
                 flowLayoutPanel1.Controls.Add(reservationPanel);
             }
         }
+
 
         private async void BtnDelete_Click(object sender, EventArgs e)
         {
@@ -86,6 +102,87 @@ namespace PresentationLayerForms
         }
 
         private void btnNewAdminAccount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkStartDate.Checked)
+            {
+                chkEndDate.Checked = false;
+                chkExactDate.Checked = false;
+
+                dtpStartDate.Visible = true;
+                dtpEndDate.Visible = false;
+                dtpExactDate.Visible = false;
+            }
+            else
+            {
+                dtpStartDate.Visible = false;
+            }
+        }
+
+        private void chkEndDate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkEndDate.Checked)
+            {
+                chkStartDate.Checked = false;
+                chkExactDate.Checked = false;
+
+                dtpEndDate.Visible = true;
+                dtpStartDate.Visible = false;
+                dtpExactDate.Visible = false;
+            }
+            else
+            {
+                dtpEndDate.Visible = false;
+            }
+        }
+
+        private void chkExactDate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkExactDate.Checked)
+            {
+                chkStartDate.Checked = false;
+                chkEndDate.Checked = false;
+
+                dtpExactDate.Visible = true;
+                dtpStartDate.Visible = false;
+                dtpEndDate.Visible = false;
+            }
+            else
+            {
+                dtpExactDate.Visible = false;
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            DateOnly? startDate = chkStartDate.Checked ? DateOnly.FromDateTime(dtpStartDate.Value.Date) : null;
+            DateOnly? endDate = chkEndDate.Checked ? DateOnly.FromDateTime(dtpEndDate.Value.Date) : null;
+            DateOnly? exactDate = chkExactDate.Checked ? DateOnly.FromDateTime(dtpExactDate.Value.Date) : null;
+
+            bool? isVerified = chkIsVerified.CheckState == CheckState.Indeterminate ? null : chkIsVerified.Checked;
+            bool? includeCancelled = chkIncludeCancelled.CheckState == CheckState.Indeterminate ? null : chkIncludeCancelled.Checked;
+            bool? includePassed = chkIncludePassed.CheckState == CheckState.Indeterminate ? null : chkIncludePassed.Checked;
+
+            GenerateReservationList(
+                startDate: startDate,
+                endDate: endDate,
+                exactDate: exactDate,
+                isVerified: isVerified,
+                includeCancelled: includeCancelled,
+                includePassed: includePassed
+            );
+        }
+
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
 
         }
