@@ -9,10 +9,13 @@ namespace BusinessLogic.Services
     public class RestaurantTableService
     {
         private readonly RestaurantDbContext _context;
+        private readonly OperatingHourService _operatingHourService;
+
 
         public RestaurantTableService(RestaurantDbContext context)
         {
             _context = context;
+            _operatingHourService = new OperatingHourService(context);
         }
 
         public void AddTable(RestaurantTable table)
@@ -57,5 +60,21 @@ namespace BusinessLogic.Services
             _context.SaveChanges();
             return true;
         }
+
+        public List<int?> GetFreeTableIdsForDate(DateOnly date, ReservationService reservationService)
+        {
+            List<OperatingHour> allOperatingHours = _operatingHourService.GetAllOperatingHours();
+            List<int?> reservedTables = reservationService.GetAllReservationsByDate(date)
+                .Select(r => r.TableId)
+                .Distinct()
+                .ToList();
+            List<int?> allTableIds = allOperatingHours
+                .Select(oh => oh.TableId)
+                .Distinct()
+                .ToList();
+
+            return allTableIds.Except(reservedTables).ToList();
+        }
+
     }
 }

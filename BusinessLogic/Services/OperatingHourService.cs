@@ -118,6 +118,16 @@ namespace BusinessLogic.Services
                 }
             }
         }
+        public List<OperatingHour> GetFreeOperatingHoursForTableAndDate(int tableId, DateOnly date, ReservationService reservationService)
+        {
+            var reservedHourIds = reservationService.GetAllReservationsByDateAndTableId(date, tableId)
+                .Select(r => r.OperatingHoursId).ToHashSet();
+
+            var dayOfWeek = date.DayOfWeek.ToString();
+            return GetOperatingHoursByDayOfWeek(dayOfWeek)
+                .Where(oh => oh.TableId == tableId && !reservedHourIds.Contains(oh.Id))
+                .ToList();
+        }
     }
 }
 

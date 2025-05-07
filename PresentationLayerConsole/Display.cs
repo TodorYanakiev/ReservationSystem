@@ -8,6 +8,12 @@ namespace PresentationLayerConsole
 {
     internal class Display
     {
+        private readonly ReservationMenu _reservationMenu;
+
+        public Display()
+        {
+            _reservationMenu = new ReservationMenu();
+        }
         public void Start()
         {
             Console.WriteLine("Запазете специалния си момент с нас\nВашата маса ви очаква!");
@@ -15,22 +21,29 @@ namespace PresentationLayerConsole
         }
         public void ShowMainMenu()
         {
-            Console.WriteLine("1. Резервирай своята маса сега!\n2. Влез като Администратор");
-            Console.Write("Въведете (1 или 2): ");
-            byte choice = byte.Parse(Console.ReadLine());
-            if(choice == 1)
+            while (true)
             {
+                Console.WriteLine("1. Резервирай своята маса сега!\n2. Влез като Администратор");
+                Console.Write("Въведете (1 или 2): ");
+                string input = Console.ReadLine();
 
-            }
-            else if(choice == 2)
-            {
+                if (byte.TryParse(input, out byte choice))
+                {
+                    if (choice == 1)
+                    {
+                        _reservationMenu.MakeReservationMenu();
+                        break;
+                    }
+                    else if (choice == 2)
+                    {
+                        // TODO: Добави логика за администратор
+                        break;
+                    }
+                }
 
-            }
-            else
-            {
-                Console.WriteLine("Невалидни данни!");
-                ShowMainMenu();
+                Console.WriteLine("Невалидни данни! Опитай отново.\n");
             }
         }
+
     }
 }
