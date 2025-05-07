@@ -55,7 +55,10 @@ namespace BusinessLogic.Services
 
         public Reservation GetReservationById(int id)
         {
-            var optionalReservation = _context.Reservations.FirstOrDefault(res => res.Id == id);
+            var optionalReservation = _context.Reservations
+                .Include(r => r.OperatingHours)
+                .Include(r => r.Table)
+                .FirstOrDefault(res => res.Id == id);
             if (optionalReservation == null)
                 throw new ArgumentException("The requested reservaton does not exist.");
             return optionalReservation;
@@ -71,19 +74,20 @@ namespace BusinessLogic.Services
 
         public List<Reservation> GetAllReservationsByTableId(int tableId)
         {
-            return _context.Reservations.Where(res => res.TableId == tableId).ToList();
+            return _context.Reservations.Include(r => r.OperatingHours).Include(r => r.Table)
+                .Where(res => res.TableId == tableId).ToList();
         }
 
         public List<Reservation> GetAllReservationsForTimePeriod(DateOnly start, DateOnly end)
         {
-            return _context.Reservations
+            return _context.Reservations.Include(r => r.OperatingHours).Include(r => r.Table)
                 .Where(res => res.ReservationDate >= start && res.ReservationDate <= end)
                 .ToList();
         }
 
         public List<Reservation> GetAllReservationsForTimePeriodAndTableId(DateOnly start, DateOnly end, int tableId)
         {
-            return _context.Reservations
+            return _context.Reservations.Include(r => r.OperatingHours).Include(r => r.Table)
                 .Where(res => res.ReservationDate >= start && res.ReservationDate <= end)
                 .Where(res => res.TableId == tableId)
                 .ToList();
@@ -91,12 +95,13 @@ namespace BusinessLogic.Services
 
         public List<Reservation> GetAllReservationsByDate(DateOnly date)
         {
-            return _context.Reservations.Where(res => res.ReservationDate == date).ToList();
+            return _context.Reservations.Include(r => r.OperatingHours).Include(r => r.Table)
+                .Where(res => res.ReservationDate == date).ToList();
         }
 
         public List<Reservation> GetAllReservationsByDateAndTableId(DateOnly date, int tableId)
         {
-            return _context.Reservations
+            return _context.Reservations.Include(r => r.OperatingHours).Include(r => r.Table)
                 .Where(res => res.ReservationDate == date)
                 .Where(res => res.TableId == tableId)
                 .ToList();
@@ -105,7 +110,7 @@ namespace BusinessLogic.Services
         public List<Reservation> GetReservations(DateOnly? startDate = null
             , DateOnly? endDate = null, DateOnly? exactDate = null, int? tableId = null)
         {
-            var query = _context.Reservations.AsQueryable();
+            var query = _context.Reservations.Include(r => r.OperatingHours).Include(r => r.Table).AsQueryable();
 
             if (exactDate.HasValue)
             {
