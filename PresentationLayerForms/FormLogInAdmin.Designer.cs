@@ -72,9 +72,9 @@
             // 
             textBoxPasswordAdmin.Location = new Point(490, 269);
             textBoxPasswordAdmin.Name = "textBoxPasswordAdmin";
+            textBoxPasswordAdmin.PasswordChar = '*';
             textBoxPasswordAdmin.Size = new Size(287, 27);
             textBoxPasswordAdmin.TabIndex = 5;
-            textBoxPasswordAdmin.Text = " ";
             textBoxPasswordAdmin.TextChanged += textBoxPasswordAdmin_TextChanged;
             // 
             // label3

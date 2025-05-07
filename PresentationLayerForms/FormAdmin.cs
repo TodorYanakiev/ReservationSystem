@@ -24,11 +24,11 @@ namespace PresentationLayerForms
 
         private void GenerateReservationList()
         {
+            flowLayoutPanel1.Controls.Clear();
             List<Reservation> reservations = reservationService.GetAllReservations();
             int size = reservations.Count;
-            for (int i = 0; i < size; i++)
+            foreach (var reservation in reservations)
             {
-                Reservation reservation = reservations[i];
                 Panel reservationPanel = new Panel();
                 reservationPanel.Size = new Size(600, 60);
                 reservationPanel.BackColor = Color.LightGray;
@@ -36,7 +36,7 @@ namespace PresentationLayerForms
 
                 Label lbl = new Label();
                 lbl.Text = $"Резервация №{reservation.Id}: {reservation.Name} - {reservation.ReservationDate} " +
-                    $"{reservation.OperatingHours.StartTime}ч до {reservation.OperatingHours.EndTime}";
+                    $"{reservation.OperatingHours.StartTime}ч до {reservation.OperatingHours.EndTime}ч";
                 lbl.AutoSize = true;
                 lbl.Location = new Point(10, 10);
 
@@ -44,11 +44,15 @@ namespace PresentationLayerForms
                 btnEdit.Text = "Редактирай";
                 btnEdit.Location = new Point(400, 5);
                 btnEdit.Size = new Size(100, 30);
+                btnEdit.Tag = reservation.Id; // Store reservation ID in the button tag
+                //btnEdit.Click += BtnEdit_Click;
 
                 Button btnDelete = new Button();
                 btnDelete.Text = "Изтрий";
                 btnDelete.Location = new Point(500, 5);
                 btnDelete.Size = new Size(80, 30);
+                btnDelete.Tag = reservation.Id;
+                btnDelete.Click += BtnDelete_Click;
 
                 reservationPanel.Controls.Add(lbl);
                 reservationPanel.Controls.Add(btnEdit);
@@ -57,6 +61,20 @@ namespace PresentationLayerForms
                 flowLayoutPanel1.Controls.Add(reservationPanel);
             }
         }
+
+        private async void BtnDelete_Click(object sender, EventArgs e)
+        {
+            int reservationId = (int)((Button)sender).Tag;
+
+            var result = MessageBox.Show("Сигурни ли сте, че искате да изтриете резервацията?", "Потвърждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                Reservation reservation = reservationService.GetReservationById(reservationId);
+                await reservationService.DeleteReservation(reservation);
+                GenerateReservationList();
+            }
+        }
+
         private void FormAdmin_Load(object sender, EventArgs e)
         {
 
