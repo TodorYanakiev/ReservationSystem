@@ -43,6 +43,7 @@
             chkIsVerified = new CheckBox();
             chkIncludeCancelled = new CheckBox();
             chkIncludePassed = new CheckBox();
+            btnAddTable = new Button();
             SuspendLayout();
             // 
             // btnAddReservation
@@ -94,7 +95,7 @@
             // 
             btnNewAdminAccount.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNewAdminAccount.ForeColor = SystemColors.HotTrack;
-            btnNewAdminAccount.Location = new Point(100, 391);
+            btnNewAdminAccount.Location = new Point(157, 391);
             btnNewAdminAccount.Name = "btnNewAdminAccount";
             btnNewAdminAccount.Size = new Size(361, 70);
             btnNewAdminAccount.TabIndex = 8;
@@ -204,12 +205,25 @@
             chkIncludePassed.Text = "Включи отминали резервации";
             chkIncludePassed.UseVisualStyleBackColor = true;
             // 
+            // btnAddTable
+            // 
+            btnAddTable.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold);
+            btnAddTable.ForeColor = SystemColors.HotTrack;
+            btnAddTable.Location = new Point(12, 391);
+            btnAddTable.Name = "btnAddTable";
+            btnAddTable.Size = new Size(94, 70);
+            btnAddTable.TabIndex = 20;
+            btnAddTable.Text = "Добави маса";
+            btnAddTable.UseVisualStyleBackColor = true;
+            btnAddTable.Click += button1_Click;
+            // 
             // FormAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(923, 497);
+            Controls.Add(btnAddTable);
             Controls.Add(chkIncludePassed);
             Controls.Add(chkIncludeCancelled);
             Controls.Add(chkIsVerified);
@@ -248,5 +262,6 @@
         private CheckBox chkIsVerified;
         private CheckBox chkIncludeCancelled;
         private CheckBox chkIncludePassed;
+        private Button btnAddTable;
     }
 }

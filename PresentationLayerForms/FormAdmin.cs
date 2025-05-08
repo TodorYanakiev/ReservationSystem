@@ -186,5 +186,12 @@ namespace PresentationLayerForms
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+                FormAddTable formAddTable = new FormAddTable();
+            formAddTable.Show();
+            this.Close();
+        }
     }
 }
