@@ -44,18 +44,20 @@
             chkIncludeCancelled = new CheckBox();
             chkIncludePassed = new CheckBox();
             btnAddTable = new Button();
+            btnOccasions = new Button();
             SuspendLayout();
             // 
             // btnAddReservation
             // 
             btnAddReservation.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAddReservation.ForeColor = SystemColors.HotTrack;
-            btnAddReservation.Location = new Point(549, 391);
+            btnAddReservation.Location = new Point(408, 391);
             btnAddReservation.Name = "btnAddReservation";
             btnAddReservation.Size = new Size(251, 70);
             btnAddReservation.TabIndex = 6;
             btnAddReservation.Text = "Добави резервация";
             btnAddReservation.UseVisualStyleBackColor = true;
+            btnAddReservation.Click += btnAddReservation_Click;
             // 
             // label2
             // 
@@ -97,7 +99,7 @@
             btnNewAdminAccount.ForeColor = SystemColors.HotTrack;
             btnNewAdminAccount.Location = new Point(157, 391);
             btnNewAdminAccount.Name = "btnNewAdminAccount";
-            btnNewAdminAccount.Size = new Size(361, 70);
+            btnNewAdminAccount.Size = new Size(245, 70);
             btnNewAdminAccount.TabIndex = 8;
             btnNewAdminAccount.Text = "Администратори";
             btnNewAdminAccount.UseVisualStyleBackColor = true;
@@ -217,12 +219,25 @@
             btnAddTable.UseVisualStyleBackColor = true;
             btnAddTable.Click += button1_Click;
             // 
+            // btnOccasions
+            // 
+            btnOccasions.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnOccasions.ForeColor = SystemColors.HotTrack;
+            btnOccasions.Location = new Point(664, 391);
+            btnOccasions.Name = "btnOccasions";
+            btnOccasions.Size = new Size(136, 70);
+            btnOccasions.TabIndex = 21;
+            btnOccasions.Text = "Неработни дни";
+            btnOccasions.UseVisualStyleBackColor = true;
+            btnOccasions.Click += btnOccasions_Click;
+            // 
             // FormAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(923, 497);
+            Controls.Add(btnOccasions);
             Controls.Add(btnAddTable);
             Controls.Add(chkIncludePassed);
             Controls.Add(chkIncludeCancelled);
@@ -263,5 +278,6 @@
         private CheckBox chkIncludeCancelled;
         private CheckBox chkIncludePassed;
         private Button btnAddTable;
+        private Button btnOccasions;
     }
 }

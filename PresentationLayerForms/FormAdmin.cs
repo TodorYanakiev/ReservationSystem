@@ -195,5 +195,17 @@ namespace PresentationLayerForms
             formAddTable.Show();
             this.Close();
         }
+
+        private void btnAddReservation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOccasions_Click(object sender, EventArgs e)
+        {
+            FormSpecialOccasion formSpecialOccasion = new FormSpecialOccasion();
+            formSpecialOccasion.Show();
+            this.Close();
+        }
     }
 }
