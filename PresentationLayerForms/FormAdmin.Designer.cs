@@ -99,7 +99,7 @@
             btnNewAdminAccount.Name = "btnNewAdminAccount";
             btnNewAdminAccount.Size = new Size(361, 70);
             btnNewAdminAccount.TabIndex = 8;
-            btnNewAdminAccount.Text = "Добави нов администраторски профил";
+            btnNewAdminAccount.Text = "Администратори";
             btnNewAdminAccount.UseVisualStyleBackColor = true;
             btnNewAdminAccount.Click += btnNewAdminAccount_Click;
             // 

@@ -71,7 +71,7 @@ namespace BusinessLogic.Services
 
         public bool IsUsernameTaken(string username)
         {
-            return _context.Users.Any(u => u.Username == username);
+            return _context.Users.Any(u => u.Username.Equals(username));
         }
 
         public bool ValidateLogin(string username, string password)

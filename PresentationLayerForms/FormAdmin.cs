@@ -103,7 +103,9 @@ namespace PresentationLayerForms
 
         private void btnNewAdminAccount_Click(object sender, EventArgs e)
         {
-
+            FormAdminsCRUD formAdminsCRUD = new FormAdminsCRUD();
+            formAdminsCRUD.Show();
+            this.Close();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
