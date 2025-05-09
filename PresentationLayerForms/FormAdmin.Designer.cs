@@ -211,9 +211,9 @@
             btnAddTable.ForeColor = SystemColors.HotTrack;
             btnAddTable.Location = new Point(12, 391);
             btnAddTable.Name = "btnAddTable";
-            btnAddTable.Size = new Size(94, 70);
+            btnAddTable.Size = new Size(139, 70);
             btnAddTable.TabIndex = 20;
-            btnAddTable.Text = "Добави маса";
+            btnAddTable.Text = "Маси";
             btnAddTable.UseVisualStyleBackColor = true;
             btnAddTable.Click += button1_Click;
             // 
