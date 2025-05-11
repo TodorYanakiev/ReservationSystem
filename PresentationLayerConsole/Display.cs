@@ -1,5 +1,4 @@
-﻿using PresentationLayerConsole.ReservationSystem.Menu;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +38,7 @@ namespace PresentationLayerConsole
                     }
                     else if (choice == 2)
                     {
-                        _adminMenu.ShowMenu();
+                        _adminMenu.ShowAdminMenu();
                         break;
                     }
                 }

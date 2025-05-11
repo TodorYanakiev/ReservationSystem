@@ -201,6 +201,11 @@ namespace PresentationLayerForms
             formStart.Show();
             this.Close();
         }
+
+        private void tabAddAdmin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

@@ -49,9 +49,10 @@
             tabControlAdmin.Controls.Add(tabAddAdmin);
             tabControlAdmin.Controls.Add(tabManageAdmins);
             tabControlAdmin.Location = new Point(0, 0);
+            tabControlAdmin.Margin = new Padding(3, 2, 3, 2);
             tabControlAdmin.Name = "tabControlAdmin";
             tabControlAdmin.SelectedIndex = 0;
-            tabControlAdmin.Size = new Size(529, 438);
+            tabControlAdmin.Size = new Size(463, 328);
             tabControlAdmin.TabIndex = 0;
             // 
             // tabAddAdmin
@@ -61,27 +62,31 @@
             tabAddAdmin.Controls.Add(lblPassword);
             tabAddAdmin.Controls.Add(txtUsername);
             tabAddAdmin.Controls.Add(lblUsername);
-            tabAddAdmin.Location = new Point(4, 29);
+            tabAddAdmin.Location = new Point(4, 24);
+            tabAddAdmin.Margin = new Padding(3, 2, 3, 2);
             tabAddAdmin.Name = "tabAddAdmin";
-            tabAddAdmin.Padding = new Padding(3);
-            tabAddAdmin.Size = new Size(521, 405);
+            tabAddAdmin.Padding = new Padding(3, 2, 3, 2);
+            tabAddAdmin.Size = new Size(455, 300);
             tabAddAdmin.TabIndex = 0;
             tabAddAdmin.Text = "Добави";
             tabAddAdmin.UseVisualStyleBackColor = true;
+            tabAddAdmin.Click += tabAddAdmin_Click;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(85, 128);
+            txtPassword.Location = new Point(74, 96);
+            txtPassword.Margin = new Padding(3, 2, 3, 2);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(125, 27);
+            txtPassword.Size = new Size(110, 23);
             txtPassword.TabIndex = 4;
             // 
             // btnAddAdmin
             // 
-            btnAddAdmin.Location = new Point(8, 196);
+            btnAddAdmin.Location = new Point(7, 147);
+            btnAddAdmin.Margin = new Padding(3, 2, 3, 2);
             btnAddAdmin.Name = "btnAddAdmin";
-            btnAddAdmin.Size = new Size(254, 29);
+            btnAddAdmin.Size = new Size(222, 22);
             btnAddAdmin.TabIndex = 3;
             btnAddAdmin.Text = "Add new admin";
             btnAddAdmin.UseVisualStyleBackColor = true;
@@ -90,35 +95,37 @@
             // lblPassword
             // 
             lblPassword.AutoSize = true;
-            lblPassword.Location = new Point(6, 135);
+            lblPassword.Location = new Point(5, 101);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(73, 20);
+            lblPassword.Size = new Size(60, 15);
             lblPassword.TabIndex = 2;
             lblPassword.Text = "Password:";
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(106, 54);
+            txtUsername.Location = new Point(93, 40);
+            txtUsername.Margin = new Padding(3, 2, 3, 2);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(125, 27);
+            txtUsername.Size = new Size(110, 23);
             txtUsername.TabIndex = 1;
             // 
             // lblUsername
             // 
             lblUsername.AutoSize = true;
-            lblUsername.Location = new Point(8, 54);
+            lblUsername.Location = new Point(7, 40);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(78, 20);
+            lblUsername.Size = new Size(63, 15);
             lblUsername.TabIndex = 0;
             lblUsername.Text = "Username:";
             // 
             // tabManageAdmins
             // 
             tabManageAdmins.Controls.Add(flowAdmins);
-            tabManageAdmins.Location = new Point(4, 29);
+            tabManageAdmins.Location = new Point(4, 24);
+            tabManageAdmins.Margin = new Padding(3, 2, 3, 2);
             tabManageAdmins.Name = "tabManageAdmins";
-            tabManageAdmins.Padding = new Padding(3);
-            tabManageAdmins.Size = new Size(521, 405);
+            tabManageAdmins.Padding = new Padding(3, 2, 3, 2);
+            tabManageAdmins.Size = new Size(455, 300);
             tabManageAdmins.TabIndex = 1;
             tabManageAdmins.Text = "Виж администратори";
             tabManageAdmins.UseVisualStyleBackColor = true;
@@ -126,16 +133,18 @@
             // flowAdmins
             // 
             flowAdmins.AutoScroll = true;
-            flowAdmins.Location = new Point(8, 8);
+            flowAdmins.Location = new Point(7, 6);
+            flowAdmins.Margin = new Padding(3, 2, 3, 2);
             flowAdmins.Name = "flowAdmins";
-            flowAdmins.Size = new Size(488, 391);
+            flowAdmins.Size = new Size(427, 293);
             flowAdmins.TabIndex = 0;
             // 
             // btnAdminMenu
             // 
-            btnAdminMenu.Location = new Point(631, 108);
+            btnAdminMenu.Location = new Point(249, 344);
+            btnAdminMenu.Margin = new Padding(3, 2, 3, 2);
             btnAdminMenu.Name = "btnAdminMenu";
-            btnAdminMenu.Size = new Size(138, 51);
+            btnAdminMenu.Size = new Size(121, 38);
             btnAdminMenu.TabIndex = 14;
             btnAdminMenu.Text = "Меню на администратор";
             btnAdminMenu.UseVisualStyleBackColor = true;
@@ -143,9 +152,10 @@
             // 
             // btnHome
             // 
-            btnHome.Location = new Point(606, 193);
+            btnHome.Location = new Point(34, 344);
+            btnHome.Margin = new Padding(3, 2, 3, 2);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(196, 51);
+            btnHome.Size = new Size(172, 38);
             btnHome.TabIndex = 13;
             btnHome.Text = "Начално меню";
             btnHome.UseVisualStyleBackColor = true;
@@ -153,12 +163,13 @@
             // 
             // FormAdminsCRUD
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(923, 497);
+            ClientSize = new Size(477, 400);
             Controls.Add(btnAdminMenu);
             Controls.Add(btnHome);
             Controls.Add(tabControlAdmin);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormAdminsCRUD";
             Text = "New admin";
             Load += FormAdminsCRUD_Load;
