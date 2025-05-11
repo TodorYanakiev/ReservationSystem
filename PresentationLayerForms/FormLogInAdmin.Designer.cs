@@ -135,6 +135,7 @@
             Controls.Add(label1);
             Name = "FormLogInAdmin";
             Text = "FormLogInAdmin";
+            Load += FormLogInAdmin_Load;
             ResumeLayout(false);
             PerformLayout();
         }

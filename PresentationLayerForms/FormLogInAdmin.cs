@@ -59,5 +59,10 @@ namespace PresentationLayerForms
             formStart.Show();
             this.Hide();
         }
+
+        private void FormLogInAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
