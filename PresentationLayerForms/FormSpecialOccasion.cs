@@ -173,5 +173,10 @@ namespace PresentationLayerForms
             form.Show();
             this.Close();
         }
+
+        private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

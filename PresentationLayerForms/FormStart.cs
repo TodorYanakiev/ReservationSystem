@@ -20,7 +20,7 @@ namespace PresentationLayerForms
         {
             //FormReservation formReservation = new FormReservation();
             RestaurantDbContext db = new RestaurantDbContext();
-            ReservationForm formReservation = new ReservationForm(new ReservationService(db), new SpecialOccasionService(db),
+            FormReservation formReservation = new FormReservation(new ReservationService(db), new SpecialOccasionService(db),
                 new OperatingHourService(db));
             formReservation.Show();
             this.Hide();
