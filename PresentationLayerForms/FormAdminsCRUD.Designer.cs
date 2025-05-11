@@ -141,8 +141,7 @@
             // 
             // btnAdminMenu
             // 
-            btnAdminMenu.Location = new Point(249, 344);
-            btnAdminMenu.Margin = new Padding(3, 2, 3, 2);
+            btnAdminMenu.Location = new Point(285, 458);
             btnAdminMenu.Name = "btnAdminMenu";
             btnAdminMenu.Size = new Size(121, 38);
             btnAdminMenu.TabIndex = 14;
@@ -152,8 +151,7 @@
             // 
             // btnHome
             // 
-            btnHome.Location = new Point(34, 344);
-            btnHome.Margin = new Padding(3, 2, 3, 2);
+            btnHome.Location = new Point(39, 458);
             btnHome.Name = "btnHome";
             btnHome.Size = new Size(172, 38);
             btnHome.TabIndex = 13;
@@ -165,7 +163,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(477, 400);
+            ClientSize = new Size(545, 534);
             Controls.Add(btnAdminMenu);
             Controls.Add(btnHome);
             Controls.Add(tabControlAdmin);

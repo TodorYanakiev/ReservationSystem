@@ -1,4 +1,5 @@
-﻿namespace PresentationLayerForms
+﻿
+namespace PresentationLayerForms
 {
     partial class FormAdmin
     {
@@ -304,5 +305,7 @@
         private Button btnAddTable;
         private Button btnOccasions;
         private Button btnBack;
+        private EventHandler btnBack_Click;
+        private readonly EventHandler label1_Click;
     }
 }
