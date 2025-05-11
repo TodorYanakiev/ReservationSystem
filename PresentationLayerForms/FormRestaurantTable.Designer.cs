@@ -206,6 +206,7 @@
             flowTables.Name = "flowTables";
             flowTables.Size = new Size(426, 266);
             flowTables.TabIndex = 0;
+            flowTables.Paint += flowTables_Paint;
             // 
             // btnHome
             // 

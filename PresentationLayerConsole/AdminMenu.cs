@@ -12,12 +12,14 @@ namespace PresentationLayerConsole
     {
         private readonly UserService _userService;
         private readonly ReservationMenu _reservationMenu;
+        private readonly RestaurantTableMenu _restaurantTableMenu;
 
         public AdminMenu()
         {
             var dbContext = new RestaurantDbContext();
             _userService = new UserService(dbContext);
             _reservationMenu = new ReservationMenu();
+            _restaurantTableMenu = new RestaurantTableMenu();
         }
 
         public Task ShowAdminMenu()
@@ -32,7 +34,7 @@ namespace PresentationLayerConsole
                 Console.WriteLine("2. Маси");
                 Console.WriteLine("3. Неработни дни");
                 Console.WriteLine("4. Администратори");
-                Console.WriteLine("0. Изход");
+                Console.WriteLine("0. Назад");
                 Console.Write("Изберете опция: ");
                 var input = Console.ReadLine();
 
@@ -42,7 +44,7 @@ namespace PresentationLayerConsole
                         _reservationMenu.ShowAdminReservationMenu(); 
                         break;
                     case "2":
-                        
+                        _restaurantTableMenu.ShowRestaurantTableMenu();
                         break;
                     case "3":
                         

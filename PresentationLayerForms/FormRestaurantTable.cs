@@ -296,5 +296,10 @@ namespace PresentationLayerForms
         {
 
         }
+
+        private void flowTables_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

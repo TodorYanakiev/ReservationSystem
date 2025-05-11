@@ -140,15 +140,17 @@ namespace PresentationLayerConsole
                 Console.WriteLine("2. Филтриране");
                 Console.WriteLine("3. Обновяване на резерваця");
                 Console.WriteLine("4. Премахване на резервация");
+                Console.WriteLine("0. Назад");
                 Console.Write("Изберете опция: ");
                 var input = Console.ReadLine();
 
                 switch (input)
                 {
                     case "1":
-                        DisplayAllReservations(); break;
+                        DisplayAllReservations(); 
+                        break;
                     case "2":
-                        
+                        FilterReservations();
                         break;
                     case "3":
                         await UpdateReservationAsync();
@@ -265,5 +267,78 @@ namespace PresentationLayerConsole
                 Console.WriteLine($"Грешка: {ex.Message}");
             }
         }
+
+
+        private void FilterReservations()
+        {
+            Console.WriteLine("=== Филтриране на резервации ===");
+
+            Console.Write("Въведете начална дата (гггг-мм-дд) или оставете празно: ");
+            DateOnly? startDate = TryParseOptionalDate(Console.ReadLine());
+
+            Console.Write("Въведете крайна дата (гггг-мм-дд) или оставете празно: ");
+            DateOnly? endDate = TryParseOptionalDate(Console.ReadLine());
+
+            Console.Write("Въведете конкретна дата (гггг-мм-дд) или оставете празно: ");
+            DateOnly? exactDate = TryParseOptionalDate(Console.ReadLine());
+
+            Console.Write("Въведете ID на маса или оставете празно: ");
+            int? tableId = TryParseOptionalInt(Console.ReadLine());
+
+            Console.Write("Само потвърдени? (y/n/празно): ");
+            bool? isVerified = TryParseOptionalBool(Console.ReadLine());
+
+            Console.Write("Включване на минали резервации? (y/n/празно): ");
+            bool? includePassed = TryParseOptionalBool(Console.ReadLine());
+
+            Console.Write("Включване на анулирани резервации? (y/n/празно): ");
+            bool? includeCancelled = TryParseOptionalBool(Console.ReadLine());
+
+            var filteredReservations = _reservationService.GetReservations(
+                startDate,
+                endDate,
+                exactDate,
+                tableId,
+                isVerified,
+                includePassed,
+                includeCancelled
+            );
+
+            if (!filteredReservations.Any())
+            {
+                Console.WriteLine("Няма намерени резервации по зададените критерии.");
+            }
+            else
+            {
+                foreach (var r in filteredReservations)
+                {
+                    Console.WriteLine($"ID: {r.Id}, Име: {r.Name}, Имейл: {r.Email}, Телефон: {r.PhoneNumber}, Маса: {r.TableId}, Дата: {r.ReservationDate}, Час: {r.OperatingHours?.StartTime}-{r.OperatingHours?.EndTime}, Потвърдена: {r.VerifiedByUser}");
+                }
+            }
+        }
+
+        private DateOnly? TryParseOptionalDate(string input)
+        {
+            return DateOnly.TryParse(input, out var result) ? result : (DateOnly?)null;
+        }
+
+        private int? TryParseOptionalInt(string input)
+        {
+            return int.TryParse(input, out var result) ? result : (int?)null;
+        }
+
+        private bool? TryParseOptionalBool(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return null;
+            return input.ToLower() switch
+            {
+                "у" => true,
+                "y" => true,
+                "н" => false,
+                "n" => false,
+                _ => null
+            };
+        }
+
     }
 }
