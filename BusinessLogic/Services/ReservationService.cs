@@ -108,7 +108,8 @@ namespace BusinessLogic.Services
         }
 
         public List<Reservation> GetReservations(DateOnly? startDate = null
-            , DateOnly? endDate = null, DateOnly? exactDate = null, int? tableId = null)
+            , DateOnly? endDate = null, DateOnly? exactDate = null, int? tableId = null,
+            bool? isVerified = null, bool? includePassed = null, bool? includeCancelled = null)
         {
             var query = _context.Reservations.Include(r => r.OperatingHours).Include(r => r.Table).AsQueryable();
 
@@ -127,6 +128,22 @@ namespace BusinessLogic.Services
             if (tableId.HasValue)
             {
                 query = query.Where(res => res.TableId == tableId.Value);
+            }
+
+            if (isVerified.HasValue)
+            {
+                query = query.Where(res => res.VerifiedByUser == isVerified.Value);
+            }
+
+            if (includeCancelled.HasValue && !includeCancelled.Value)
+            {
+                query = query.Where(res => res.CanceledAt == null);
+            }
+
+            if (includePassed.HasValue && !includePassed.Value)
+            {
+                var today = DateOnly.FromDateTime(DateTime.Today);
+                query = query.Where(res => res.ReservationDate >= today);
             }
 
             return query.ToList();

@@ -1,3 +1,5 @@
+using BusinessLogic.Services;
+using ReservationSystem.Models;
 namespace PresentationLayerForms
 {
     public partial class FormStart : Form
@@ -16,7 +18,10 @@ namespace PresentationLayerForms
 
         private void btnUser_Click(object sender, EventArgs e)
         {
-            FormReservation formReservation = new FormReservation();
+            //FormReservation formReservation = new FormReservation();
+            RestaurantDbContext db = new RestaurantDbContext();
+            ReservationForm formReservation = new ReservationForm(new ReservationService(db), new SpecialOccasionService(db),
+                new OperatingHourService(db));
             formReservation.Show();
             this.Hide();
         }

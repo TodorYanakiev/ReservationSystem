@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogic.Services;
+using ReservationSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +14,11 @@ namespace PresentationLayerForms
 {
     public partial class FormLogInAdmin : Form
     {
+        private readonly UserService userService;
+
         public FormLogInAdmin()
         {
+            userService = new UserService(new RestaurantDbContext());
             InitializeComponent();
         }
 
@@ -23,7 +28,16 @@ namespace PresentationLayerForms
         }
 
         private void btnAdminLogIn_Click(object sender, EventArgs e)
-        {
+        {            
+            string username = textBoxUsernameAdmin.Text;
+            string password = textBoxPasswordAdmin.Text;
+            User user = userService.GetUserByUsername(username);
+            if (user == null || !userService.ValidateLogin(username, password))
+            {
+                MessageBox.Show("Invalid username or password!", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
             FormAdmin formAdmin = new FormAdmin();
             formAdmin.Show();
             this.Hide();
