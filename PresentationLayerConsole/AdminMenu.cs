@@ -10,32 +10,28 @@ namespace PresentationLayerConsole
 {
     public class AdminMenu
     {
-        private readonly ReservationService _reservationService;
-        private readonly OperatingHourService _operatingHourService;
-        private readonly RestaurantTableService _tableService;
         private readonly UserService _userService;
+        private readonly ReservationMenu _reservationMenu;
 
         public AdminMenu()
         {
             var dbContext = new RestaurantDbContext();
-            _reservationService = new ReservationService(dbContext);
-            _operatingHourService = new OperatingHourService(dbContext);
-            _tableService = new RestaurantTableService(dbContext);
             _userService = new UserService(dbContext);
+            _reservationMenu = new ReservationMenu();
         }
 
-        public async Task ShowMenu()
+        public Task ShowAdminMenu()
         {
             if (!Login())
-                return;
-
+                return Task.CompletedTask;
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine("==== Админ меню ====");
-                Console.WriteLine("1. Виж всички резервации");
-                Console.WriteLine("2. Обнови резервация");
-                Console.WriteLine("3. Изтрий резервация");
+                Console.WriteLine("1. Rезервации");
+                Console.WriteLine("2. Маси");
+                Console.WriteLine("3. Неработни дни");
+                Console.WriteLine("4. Администратори");
                 Console.WriteLine("0. Изход");
                 Console.Write("Изберете опция: ");
                 var input = Console.ReadLine();
@@ -43,16 +39,16 @@ namespace PresentationLayerConsole
                 switch (input)
                 {
                     case "1":
-                        DisplayAllReservations();
+                        _reservationMenu.ShowAdminReservationMenu(); 
                         break;
                     case "2":
-                        await UpdateReservationAsync();
+                        
                         break;
                     case "3":
-                        await DeleteReservationAsync();
+                        
                         break;
                     case "0":
-                        return;
+                        return Task.CompletedTask;
                     default:
                         Console.WriteLine("Невалидна опция.");
                         break;
@@ -65,129 +61,49 @@ namespace PresentationLayerConsole
 
         private bool Login()
         {
-            Console.WriteLine("==== Вход за администратор ====");
-            Console.Write("Потребителско име: ");
-            string username = Console.ReadLine()!;
-            Console.Write("Парола: ");
-            string password = ReadPassword();
+            const int maxAttempts = 3; 
+            int attempts = 0;
 
-            bool success = _userService.ValidateLogin(username, password);
-            if (!success)
+            while (attempts < maxAttempts)
             {
-                Console.WriteLine("Невалидни данни за вход.");
-                Console.WriteLine("Натиснете Enter за изход...");
-                Console.ReadLine();
-                return false;
-            }
+                Console.WriteLine("==== Вход за администратор ====");
+                Console.Write("Потребителско име: ");
+                string username = Console.ReadLine()!;
+                Console.Write("Парола: ");
+                string password = ReadPassword();
 
-            var user = _userService.GetUserByUsername(username);
-            if (user == null || user.Role?.ToLower() != "admin")
-            {
-                Console.WriteLine("Само администратори имат достъп до това меню.");
-                Console.WriteLine("Натиснете Enter за изход...");
-                Console.ReadLine();
-                return false;
-            }
-
-            return true;
-        }
-
-        private void DisplayAllReservations()
-        {
-            var reservations = _reservationService.GetAllReservations();
-            foreach (var r in reservations)
-            {
-                Console.WriteLine($"ID: {r.Id}, Име: {r.Name}, Имейл: {r.Email}, Телефон: {r.PhoneNumber}, Маса: {r.TableId}, Дата: {r.ReservationDate}, Час: {r.OperatingHours?.StartTime}-{r.OperatingHours?.EndTime}, Потвърдена: {r.VerifiedByUser}");
-            }
-        }
-
-        private async Task UpdateReservationAsync()
-        {
-            Console.Write("ID на резервацията за обновяване: ");
-            if (!int.TryParse(Console.ReadLine(), out int id))
-            {
-                Console.WriteLine("Невалиден ID.");
-                return;
-            }
-
-            try
-            {
-                var existing = _reservationService.GetReservationById(id);
-                if (existing == null)
+                bool success = _userService.ValidateLogin(username, password);
+                if (success)
                 {
-                    Console.WriteLine("Резервацията не е намерена.");
-                    return;
+                    var user = _userService.GetUserByUsername(username);
+                    if (user == null || user.Role?.ToLower() != "admin")
+                    {
+                        Console.WriteLine("Само администратори имат достъп до това меню.");
+                        Console.WriteLine("Натиснете Enter за изход...");
+                        Console.ReadLine();
+                        return false;
+                    }
+                    return true;
                 }
-
-                Console.Write($"Ново име ({existing.Name}): ");
-                var nameInput = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(nameInput))
-                    existing.Name = nameInput;
-
-                Console.Write($"Нов имейл ({existing.Email}): ");
-                var emailInput = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(emailInput))
-                    existing.Email = emailInput;
-
-                Console.Write($"Нов телефонен номер ({existing.PhoneNumber}): ");
-                var phoneInput = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(phoneInput))
-                    existing.PhoneNumber = phoneInput;
-
-                Console.Write($"Нова маса ID ({existing.TableId}): ");
-                var tableInput = Console.ReadLine();
-                if (int.TryParse(tableInput, out int tableId))
-                    existing.TableId = tableId;
-
-                Console.Write($"Нов часови интервал ID ({existing.OperatingHoursId}): ");
-                var hourInput = Console.ReadLine();
-                if (int.TryParse(hourInput, out int hourId))
-                    existing.OperatingHoursId = hourId;
-
-                Console.Write($"Нова дата (гггг-мм-дд) ({existing.ReservationDate}): ");
-                var dateInput = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(dateInput) && DateOnly.TryParse(dateInput, out var newDate))
-                    existing.ReservationDate = newDate;
-
-                Console.Write("Бележки (по желание): ");
-                var notes = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(notes))
-                    existing.Notes = notes;
-
-                await _reservationService.UpdateReservation(existing);
-                Console.WriteLine("Резервацията е обновена.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Грешка: {ex.Message}");
-            }
-        }
-
-        private async Task DeleteReservationAsync()
-        {
-            Console.Write("ID на резервацията за изтриване: ");
-            if (!int.TryParse(Console.ReadLine(), out int id))
-            {
-                Console.WriteLine("Невалиден ID.");
-                return;
-            }
-
-            try
-            {
-                var existing = _reservationService.GetReservationById(id);
-                if (existing == null)
+                else
                 {
-                    Console.WriteLine("Резервацията не е намерена.");
-                    return;
-                }
+                    attempts++;
+                    Console.WriteLine("Невалидни данни за вход.");
 
-                await _reservationService.DeleteReservation(existing);
-                Console.WriteLine("Резервацията е изтрита.");
+                    if (attempts < maxAttempts)
+                    {
+                        Console.WriteLine($"Остават {maxAttempts - attempts} опита.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Броят опити е изчерпан.");
+                        Console.WriteLine("Натиснете Enter за изход...");
+                        Console.ReadLine();
+                        return false;
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Грешка: {ex.Message}");
-            }
+            return false;
         }
 
         private string ReadPassword()
@@ -218,3 +134,5 @@ namespace PresentationLayerConsole
         }
     }
 }
+
+

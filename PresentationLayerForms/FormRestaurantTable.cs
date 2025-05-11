@@ -291,5 +291,10 @@ namespace PresentationLayerForms
             formAdmin.Show();
             this.Close();
         }
+
+        private void add_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

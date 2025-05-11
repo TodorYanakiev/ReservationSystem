@@ -51,9 +51,10 @@
             // 
             btnAddReservation.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAddReservation.ForeColor = SystemColors.HotTrack;
-            btnAddReservation.Location = new Point(408, 391);
+            btnAddReservation.Location = new Point(357, 293);
+            btnAddReservation.Margin = new Padding(3, 2, 3, 2);
             btnAddReservation.Name = "btnAddReservation";
-            btnAddReservation.Size = new Size(251, 70);
+            btnAddReservation.Size = new Size(220, 52);
             btnAddReservation.TabIndex = 6;
             btnAddReservation.Text = "Добави резервация";
             btnAddReservation.UseVisualStyleBackColor = true;
@@ -65,9 +66,9 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(356, 67);
+            label2.Location = new Point(312, 50);
             label2.Name = "label2";
-            label2.Size = new Size(225, 41);
+            label2.Size = new Size(179, 32);
             label2.TabIndex = 5;
             label2.Text = "Добре дошли!";
             // 
@@ -77,19 +78,21 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(264, 18);
+            label1.Location = new Point(231, 14);
             label1.Name = "label1";
-            label1.Size = new Size(418, 41);
+            label1.Size = new Size(333, 32);
             label1.TabIndex = 4;
             label1.Text = "Администраторски панел";
+            label1.Click += label1_Click;
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.BackColor = Color.White;
-            flowLayoutPanel1.Location = new Point(100, 171);
+            flowLayoutPanel1.Location = new Point(88, 128);
+            flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(700, 199);
+            flowLayoutPanel1.Size = new Size(612, 149);
             flowLayoutPanel1.TabIndex = 7;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
@@ -97,9 +100,10 @@
             // 
             btnNewAdminAccount.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNewAdminAccount.ForeColor = SystemColors.HotTrack;
-            btnNewAdminAccount.Location = new Point(157, 391);
+            btnNewAdminAccount.Location = new Point(137, 293);
+            btnNewAdminAccount.Margin = new Padding(3, 2, 3, 2);
             btnNewAdminAccount.Name = "btnNewAdminAccount";
-            btnNewAdminAccount.Size = new Size(245, 70);
+            btnNewAdminAccount.Size = new Size(214, 52);
             btnNewAdminAccount.TabIndex = 8;
             btnNewAdminAccount.Text = "Администратори";
             btnNewAdminAccount.UseVisualStyleBackColor = true;
@@ -108,9 +112,10 @@
             // chkStartDate
             // 
             chkStartDate.AutoSize = true;
-            chkStartDate.Location = new Point(139, 100);
+            chkStartDate.Location = new Point(122, 75);
+            chkStartDate.Margin = new Padding(3, 2, 3, 2);
             chkStartDate.Name = "chkStartDate";
-            chkStartDate.Size = new Size(123, 24);
+            chkStartDate.Size = new Size(98, 19);
             chkStartDate.TabIndex = 10;
             chkStartDate.Text = "начална дата";
             chkStartDate.UseVisualStyleBackColor = true;
@@ -119,9 +124,10 @@
             // chkEndDate
             // 
             chkEndDate.AutoSize = true;
-            chkEndDate.Location = new Point(403, 111);
+            chkEndDate.Location = new Point(353, 83);
+            chkEndDate.Margin = new Padding(3, 2, 3, 2);
             chkEndDate.Name = "chkEndDate";
-            chkEndDate.Size = new Size(115, 24);
+            chkEndDate.Size = new Size(91, 19);
             chkEndDate.TabIndex = 11;
             chkEndDate.Text = "крайна дата";
             chkEndDate.UseVisualStyleBackColor = true;
@@ -130,9 +136,10 @@
             // chkExactDate
             // 
             chkExactDate.AutoSize = true;
-            chkExactDate.Location = new Point(664, 100);
+            chkExactDate.Location = new Point(581, 75);
+            chkExactDate.Margin = new Padding(3, 2, 3, 2);
             chkExactDate.Name = "chkExactDate";
-            chkExactDate.Size = new Size(105, 24);
+            chkExactDate.Size = new Size(84, 19);
             chkExactDate.TabIndex = 12;
             chkExactDate.Text = "точна дата";
             chkExactDate.UseVisualStyleBackColor = true;
@@ -141,35 +148,39 @@
             // dtpStartDate
             // 
             dtpStartDate.Format = DateTimePickerFormat.Short;
-            dtpStartDate.Location = new Point(33, 130);
+            dtpStartDate.Location = new Point(29, 98);
+            dtpStartDate.Margin = new Padding(3, 2, 3, 2);
             dtpStartDate.Name = "dtpStartDate";
-            dtpStartDate.Size = new Size(250, 27);
+            dtpStartDate.Size = new Size(219, 23);
             dtpStartDate.TabIndex = 13;
             dtpStartDate.Visible = false;
             // 
             // dtpEndDate
             // 
             dtpEndDate.Format = DateTimePickerFormat.Short;
-            dtpEndDate.Location = new Point(331, 141);
+            dtpEndDate.Location = new Point(290, 106);
+            dtpEndDate.Margin = new Padding(3, 2, 3, 2);
             dtpEndDate.Name = "dtpEndDate";
-            dtpEndDate.Size = new Size(250, 27);
+            dtpEndDate.Size = new Size(219, 23);
             dtpEndDate.TabIndex = 14;
             dtpEndDate.Visible = false;
             // 
             // dtpExactDate
             // 
             dtpExactDate.Format = DateTimePickerFormat.Short;
-            dtpExactDate.Location = new Point(608, 130);
+            dtpExactDate.Location = new Point(532, 98);
+            dtpExactDate.Margin = new Padding(3, 2, 3, 2);
             dtpExactDate.Name = "dtpExactDate";
-            dtpExactDate.Size = new Size(250, 27);
+            dtpExactDate.Size = new Size(219, 23);
             dtpExactDate.TabIndex = 15;
             dtpExactDate.Visible = false;
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(817, 185);
+            btnSearch.Location = new Point(715, 139);
+            btnSearch.Margin = new Padding(3, 2, 3, 2);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(94, 29);
+            btnSearch.Size = new Size(82, 22);
             btnSearch.TabIndex = 16;
             btnSearch.Text = "търси";
             btnSearch.UseVisualStyleBackColor = true;
@@ -178,9 +189,10 @@
             // chkIsVerified
             // 
             chkIsVerified.AutoSize = true;
-            chkIsVerified.Location = new Point(12, 12);
+            chkIsVerified.Location = new Point(10, 9);
+            chkIsVerified.Margin = new Padding(3, 2, 3, 2);
             chkIsVerified.Name = "chkIsVerified";
-            chkIsVerified.Size = new Size(201, 24);
+            chkIsVerified.Size = new Size(156, 19);
             chkIsVerified.TabIndex = 17;
             chkIsVerified.Text = "потвърдена резервация";
             chkIsVerified.UseVisualStyleBackColor = true;
@@ -189,9 +201,10 @@
             // chkIncludeCancelled
             // 
             chkIncludeCancelled.AutoSize = true;
-            chkIncludeCancelled.Location = new Point(12, 42);
+            chkIncludeCancelled.Location = new Point(10, 32);
+            chkIncludeCancelled.Margin = new Padding(3, 2, 3, 2);
             chkIncludeCancelled.Name = "chkIncludeCancelled";
-            chkIncludeCancelled.Size = new Size(239, 24);
+            chkIncludeCancelled.Size = new Size(189, 19);
             chkIncludeCancelled.TabIndex = 18;
             chkIncludeCancelled.Text = "Включи отказани резервации";
             chkIncludeCancelled.UseVisualStyleBackColor = true;
@@ -200,9 +213,10 @@
             // chkIncludePassed
             // 
             chkIncludePassed.AutoSize = true;
-            chkIncludePassed.Location = new Point(12, 72);
+            chkIncludePassed.Location = new Point(10, 54);
+            chkIncludePassed.Margin = new Padding(3, 2, 3, 2);
             chkIncludePassed.Name = "chkIncludePassed";
-            chkIncludePassed.Size = new Size(245, 24);
+            chkIncludePassed.Size = new Size(195, 19);
             chkIncludePassed.TabIndex = 19;
             chkIncludePassed.Text = "Включи отминали резервации";
             chkIncludePassed.UseVisualStyleBackColor = true;
@@ -211,9 +225,10 @@
             // 
             btnAddTable.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold);
             btnAddTable.ForeColor = SystemColors.HotTrack;
-            btnAddTable.Location = new Point(12, 391);
+            btnAddTable.Location = new Point(10, 293);
+            btnAddTable.Margin = new Padding(3, 2, 3, 2);
             btnAddTable.Name = "btnAddTable";
-            btnAddTable.Size = new Size(139, 70);
+            btnAddTable.Size = new Size(122, 52);
             btnAddTable.TabIndex = 20;
             btnAddTable.Text = "Маси";
             btnAddTable.UseVisualStyleBackColor = true;
@@ -223,9 +238,10 @@
             // 
             btnOccasions.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnOccasions.ForeColor = SystemColors.HotTrack;
-            btnOccasions.Location = new Point(664, 391);
+            btnOccasions.Location = new Point(581, 293);
+            btnOccasions.Margin = new Padding(3, 2, 3, 2);
             btnOccasions.Name = "btnOccasions";
-            btnOccasions.Size = new Size(136, 70);
+            btnOccasions.Size = new Size(119, 52);
             btnOccasions.TabIndex = 21;
             btnOccasions.Text = "Неработни дни";
             btnOccasions.UseVisualStyleBackColor = true;
@@ -233,10 +249,10 @@
             // 
             // FormAdmin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(923, 497);
+            ClientSize = new Size(808, 373);
             Controls.Add(btnOccasions);
             Controls.Add(btnAddTable);
             Controls.Add(chkIncludePassed);
@@ -254,6 +270,7 @@
             Controls.Add(btnAddReservation);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormAdmin";
             Text = "FormAdmin";
             Load += FormAdmin_Load;

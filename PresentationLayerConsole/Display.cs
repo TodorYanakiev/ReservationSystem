@@ -38,7 +38,7 @@ namespace PresentationLayerConsole
                     }
                     else if (choice == 2)
                     {
-                        _adminMenu.ShowMenu();
+                        _adminMenu.ShowAdminMenu();
                         break;
                     }
                 }
