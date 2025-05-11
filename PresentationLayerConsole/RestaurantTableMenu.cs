@@ -103,7 +103,7 @@ namespace PresentationLayerConsole
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌Грешка при запис: {ex.Message}");
+                Console.WriteLine($"Грешка при запис: {ex.Message}");
             }
         }
 

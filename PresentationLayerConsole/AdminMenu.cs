@@ -13,6 +13,9 @@ namespace PresentationLayerConsole
         private readonly UserService _userService;
         private readonly ReservationMenu _reservationMenu;
         private readonly RestaurantTableMenu _restaurantTableMenu;
+        private readonly OperatingHourMenu _operatingHourMenu;
+        private readonly SpecialOccasionMenu _specialOccasionMenu;
+        private readonly UserMenu _userMenu;
 
         public AdminMenu()
         {
@@ -20,6 +23,9 @@ namespace PresentationLayerConsole
             _userService = new UserService(dbContext);
             _reservationMenu = new ReservationMenu();
             _restaurantTableMenu = new RestaurantTableMenu();
+            _operatingHourMenu = new OperatingHourMenu();
+            _specialOccasionMenu = new SpecialOccasionMenu();
+            _userMenu = new UserMenu();
         }
 
         public Task ShowAdminMenu()
@@ -32,8 +38,9 @@ namespace PresentationLayerConsole
                 Console.WriteLine("==== Админ меню ====");
                 Console.WriteLine("1. Rезервации");
                 Console.WriteLine("2. Маси");
-                Console.WriteLine("3. Неработни дни");
+                Console.WriteLine("3. Специални поводи");
                 Console.WriteLine("4. Администратори");
+                Console.WriteLine("5. Работни часове");
                 Console.WriteLine("0. Назад");
                 Console.Write("Изберете опция: ");
                 var input = Console.ReadLine();
@@ -47,7 +54,13 @@ namespace PresentationLayerConsole
                         _restaurantTableMenu.ShowRestaurantTableMenu();
                         break;
                     case "3":
-                        
+                        _specialOccasionMenu.ShowOccasionMenu();
+                        break;
+                    case "4":
+                        _userMenu.ShowUserMenu();
+                        break;
+                    case "5":
+                        _operatingHourMenu.ShowOperatingHourMenu();
                         break;
                     case "0":
                         return Task.CompletedTask;
