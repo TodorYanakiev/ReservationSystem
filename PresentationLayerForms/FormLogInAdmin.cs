@@ -28,7 +28,7 @@ namespace PresentationLayerForms
         }
 
         private void btnAdminLogIn_Click(object sender, EventArgs e)
-        {            
+        {
             string username = textBoxUsernameAdmin.Text;
             string password = textBoxPasswordAdmin.Text;
             User user = userService.GetUserByUsername(username);
@@ -51,6 +51,13 @@ namespace PresentationLayerForms
         private void textBoxPasswordAdmin_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            FormStart formStart = new FormStart();
+            formStart.Show();
+            this.Hide();
         }
     }
 }

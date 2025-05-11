@@ -207,5 +207,12 @@ namespace PresentationLayerForms
             formSpecialOccasion.Show();
             this.Close();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            FormLogInAdmin formLogInAdmin = new FormLogInAdmin();
+            formLogInAdmin.Show();
+            this.Hide();
+        }
     }
 }

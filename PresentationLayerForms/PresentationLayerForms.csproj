@@ -9,6 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\FormAdmin.jpg" />
+    <None Remove="Resources\FormLogInAdmin.jpg" />
+    <None Remove="Resources\FormReservation.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\FormAdmin.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\FormLogInAdmin.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\FormReservation.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
     <ProjectReference Include="..\ReservationSystem\DataAccess.csproj" />
   </ItemGroup>

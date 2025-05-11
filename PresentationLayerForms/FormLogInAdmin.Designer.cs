@@ -34,6 +34,7 @@
             textBoxPasswordAdmin = new TextBox();
             label3 = new Label();
             btnAdminLogIn = new Button();
+            btnBack = new Button();
             SuspendLayout();
             // 
             // label1
@@ -82,7 +83,7 @@
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.DeepSkyBlue;
+            label3.ForeColor = Color.PaleTurquoise;
             label3.Location = new Point(278, 258);
             label3.Name = "label3";
             label3.Size = new Size(130, 38);
@@ -96,13 +97,27 @@
             btnAdminLogIn.FlatStyle = FlatStyle.Flat;
             btnAdminLogIn.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAdminLogIn.ForeColor = Color.Thistle;
-            btnAdminLogIn.Location = new Point(657, 371);
+            btnAdminLogIn.Location = new Point(650, 370);
             btnAdminLogIn.Name = "btnAdminLogIn";
             btnAdminLogIn.Size = new Size(199, 64);
             btnAdminLogIn.TabIndex = 6;
             btnAdminLogIn.Text = "Вход";
             btnAdminLogIn.UseVisualStyleBackColor = false;
             btnAdminLogIn.Click += btnAdminLogIn_Click;
+            // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.Transparent;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.ForeColor = Color.Pink;
+            btnBack.Location = new Point(80, 370);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(199, 64);
+            btnBack.TabIndex = 7;
+            btnBack.Text = "Назад";
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             // 
             // FormLogInAdmin
             // 
@@ -111,6 +126,7 @@
             BackgroundImage = Properties.Resources.FormLogInAdmin;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(923, 497);
+            Controls.Add(btnBack);
             Controls.Add(btnAdminLogIn);
             Controls.Add(textBoxPasswordAdmin);
             Controls.Add(label3);
@@ -131,5 +147,6 @@
         private TextBox textBoxPasswordAdmin;
         private Label label3;
         private Button btnAdminLogIn;
+        private Button btnBack;
     }
 }

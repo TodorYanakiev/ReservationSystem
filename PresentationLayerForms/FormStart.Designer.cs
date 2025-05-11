@@ -40,7 +40,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(159, 72);
+            label1.Location = new Point(159, 29);
             label1.Name = "label1";
             label1.Size = new Size(575, 38);
             label1.TabIndex = 0;
@@ -52,7 +52,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Transparent;
-            label2.Location = new Point(259, 122);
+            label2.Location = new Point(259, 79);
             label2.Name = "label2";
             label2.Size = new Size(372, 38);
             label2.TabIndex = 1;
@@ -65,7 +65,7 @@
             btnUser.FlatStyle = FlatStyle.Popup;
             btnUser.Font = new Font("Segoe UI Variable Display", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnUser.ForeColor = Color.DarkGoldenrod;
-            btnUser.Location = new Point(253, 214);
+            btnUser.Location = new Point(259, 197);
             btnUser.Name = "btnUser";
             btnUser.Size = new Size(378, 83);
             btnUser.TabIndex = 2;
@@ -91,14 +91,15 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            BackgroundImage = Properties.Resources.FormStart1;
+            BackColor = SystemColors.Control;
+            BackgroundImage = Properties.Resources.FormStart;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(923, 497);
             Controls.Add(btnAdmin);
             Controls.Add(btnUser);
             Controls.Add(label2);
             Controls.Add(label1);
+            DoubleBuffered = true;
             Name = "FormStart";
             Text = "Form1";
             Load += FormStart_Load;
