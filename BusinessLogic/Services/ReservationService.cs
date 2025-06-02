@@ -87,7 +87,11 @@ namespace BusinessLogic.Services
                 throw new ArgumentException("The reservation is already verified.");
 
             if (!optinalReservation.VerificationCode.Equals(code))
+            {
+                _context.Reservations.Remove(optinalReservation);
+                _context.SaveChanges();
                 throw new ArgumentException("Invalid verification code.");
+            }
             optinalReservation.VerifiedByUser = true;
             _context.SaveChanges();
         }
