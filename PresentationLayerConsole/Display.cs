@@ -34,12 +34,12 @@ namespace PresentationLayerConsole
                     if (choice == 1)
                     {
                         _reservationMenu.MakeReservationMenu();
-                        break;
+                        continue;
                     }
                     else if (choice == 2)
                     {
                         _adminMenu.ShowAdminMenu();
-                        break;
+                        continue;
                     }
                 }
 

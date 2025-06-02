@@ -54,10 +54,10 @@
             tabCreateOccasion.Controls.Add(tabPage1);
             tabCreateOccasion.Controls.Add(tabPage2);
             tabCreateOccasion.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tabCreateOccasion.Location = new Point(70, 66);
+            tabCreateOccasion.Location = new Point(82, 72);
             tabCreateOccasion.Name = "tabCreateOccasion";
             tabCreateOccasion.SelectedIndex = 0;
-            tabCreateOccasion.Size = new Size(786, 310);
+            tabCreateOccasion.Size = new Size(758, 303);
             tabCreateOccasion.TabIndex = 0;
             // 
             // tabPage1
@@ -74,7 +74,7 @@
             tabPage1.Location = new Point(4, 32);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(778, 274);
+            tabPage1.Size = new Size(750, 267);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Добави";
             tabPage1.UseVisualStyleBackColor = true;
@@ -172,7 +172,7 @@
             tabPage2.Location = new Point(4, 32);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(778, 274);
+            tabPage2.Size = new Size(750, 267);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Всички";
             tabPage2.UseVisualStyleBackColor = true;
@@ -181,9 +181,9 @@
             // 
             flowOccasions.AutoScroll = true;
             flowOccasions.FlowDirection = FlowDirection.TopDown;
-            flowOccasions.Location = new Point(25, 16);
+            flowOccasions.Location = new Point(15, 6);
             flowOccasions.Name = "flowOccasions";
-            flowOccasions.Size = new Size(708, 240);
+            flowOccasions.Size = new Size(717, 255);
             flowOccasions.TabIndex = 0;
             flowOccasions.WrapContents = false;
             // 
@@ -193,9 +193,9 @@
             btnHomeMenu.FlatStyle = FlatStyle.Flat;
             btnHomeMenu.Font = new Font("Segoe UI Variable Display", 13F, FontStyle.Bold);
             btnHomeMenu.ForeColor = SystemColors.Control;
-            btnHomeMenu.Location = new Point(130, 396);
+            btnHomeMenu.Location = new Point(110, 398);
             btnHomeMenu.Name = "btnHomeMenu";
-            btnHomeMenu.Size = new Size(246, 87);
+            btnHomeMenu.Size = new Size(246, 76);
             btnHomeMenu.TabIndex = 1;
             btnHomeMenu.Text = "Начално меню";
             btnHomeMenu.UseVisualStyleBackColor = false;
@@ -207,9 +207,9 @@
             btnAdminMenu.FlatStyle = FlatStyle.Flat;
             btnAdminMenu.Font = new Font("Segoe UI Variable Display", 13F, FontStyle.Bold);
             btnAdminMenu.ForeColor = SystemColors.Control;
-            btnAdminMenu.Location = new Point(562, 396);
+            btnAdminMenu.Location = new Point(563, 398);
             btnAdminMenu.Name = "btnAdminMenu";
-            btnAdminMenu.Size = new Size(246, 87);
+            btnAdminMenu.Size = new Size(246, 76);
             btnAdminMenu.TabIndex = 2;
             btnAdminMenu.Text = "Администраторско меню";
             btnAdminMenu.UseVisualStyleBackColor = false;

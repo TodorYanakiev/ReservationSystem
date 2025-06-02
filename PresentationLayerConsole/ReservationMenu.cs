@@ -25,109 +25,154 @@ namespace PresentationLayerConsole
             {
                 Console.Clear();
                 Console.WriteLine("=== Направи резервация ===");
-                Console.Write("Въведи дата за резервация (гггг-мм-дд) или 'b' за връщане назад: ");
 
-                string dateInput = Console.ReadLine();
-                if (dateInput.ToLower() == "b") return;
+                DateOnly? date = PromptForDate();
+                if (date == null) return;
 
-                if (!DateOnly.TryParse(dateInput, out DateOnly date))
-                {
-                    Console.Write("Невалиден формат на дата. Натисни Enter за нов опит...");
-                    Console.ReadLine();
-                    continue;
-                }
+                int? tableId = PromptForTableSelection(date.Value);
+                if (tableId == null) continue;
 
-                List<int?> freeTableIds = _restaurantTableService.GetFreeTableIdsForDate(date, _reservationService);
-                if (!freeTableIds.Any())
-                {
-                    Console.WriteLine("Няма свободни маси за тази дата. Натисни Enter за нов опит...");
-                    Console.ReadLine();
-                    continue;
-                }
+                OperatingHour selectedHour = PromptForTimeSlot(date.Value, tableId.Value);
+                if (selectedHour == null) continue;
 
-                Console.WriteLine("Избери маса:");
-                for (int i = 0; i < freeTableIds.Count; i++)
-                {
-                    Console.WriteLine($"{i + 1}. Маса №{freeTableIds[i]}");
-                }
-                Console.Write("Въведи номер на маса или 'b' за връщане назад: ");
-                string tableInput = Console.ReadLine();
-                if (tableInput.ToLower() == "b") continue;
-                
-                if (!int.TryParse(tableInput, out int tableChoice) || tableChoice < 1 || tableChoice > freeTableIds.Count)
-                {
-                    Console.WriteLine("Невалиден избор. Натисни Enter за нов опит...");
-                    Console.ReadLine();
-                    continue;
-                }
+                Reservation reservation = CollectReservationDetails(date.Value, tableId.Value, selectedHour);
 
-                int? chosenTableId = freeTableIds[tableChoice - 1];
-                List<OperatingHour> freeHours = _operatingHourService.GetFreeOperatingHoursForTableAndDate((int)chosenTableId, date, _reservationService);
-                if (!freeHours.Any())
-                {
-                    Console.WriteLine("Няма свободни часове за избраната маса. Натисни Enter за нов опит...");
-                    Console.ReadLine();
-                    continue;
-                }
-
-                Console.WriteLine("Избери свободен часови интервал:");
-                for (int i = 0; i < freeHours.Count; i++)
-                {
-                    OperatingHour h = freeHours[i];
-                    Console.WriteLine($"{i + 1}. {h.StartTime} - {h.EndTime}");
-                }
-                Console.Write("Въведи номер на интервал или 'b' за връщане назад: ");
-                string hourInput = Console.ReadLine();
-                if (hourInput.ToLower() == "b") continue;
-
-                if (!int.TryParse(hourInput, out int hourChoice) || hourChoice < 1 || hourChoice > freeHours.Count)
-                {
-                    Console.WriteLine("Невалиден избор. Натисни Enter за нов опит...");
-                    Console.ReadLine();
-                    continue;
-                }
-
-                OperatingHour selectedHour = freeHours[hourChoice - 1];
-
-                Console.Write("Въведи своето име: ");
-                string name = Console.ReadLine();
-                Console.Write("Въведи имейл: ");
-                string email = Console.ReadLine();
-                Console.Write("Въведи телефон: ");
-                string phone = Console.ReadLine();
-                Console.Write("Допълнителни бележки (по избор): ");
-                string notes = Console.ReadLine();
-
-                Reservation reservation = new Reservation
-                {
-                    Name = name,
-                    Email = email,
-                    PhoneNumber = phone,
-                    Notes = notes,
-                    TableId = chosenTableId,
-                    OperatingHoursId = selectedHour.Id,
-                    ReservationDate = date
-                };
-
-                try
-                {
-                    _reservationService.CreateReservation(reservation).Wait();
-                    Console.WriteLine("Код за потвърждение е изпратен на твоя имейл.");
-                    Console.Write("Въведи кода: ");
-                    string code = Console.ReadLine();
-                    _reservationService.VerifyReservation(reservation, code);
-                    Console.WriteLine("Резервацията е успешно потвърдена!");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Грешка: {ex.Message}");
-                }
+                TryToConfirmReservation(reservation);
 
                 Console.WriteLine("Натисни Enter за връщане към менюто.");
                 Console.ReadLine();
                 return;
             }
         }
+
+
+        private DateOnly? PromptForDate()
+        {
+            Console.Write("Въведи дата за резервация (гггг-мм-дд) или 'b' за връщане назад: ");
+            string dateInput = Console.ReadLine();
+
+            if (dateInput.Trim().ToLower() == "b")
+            {
+                Console.Clear();
+                return null;
+            }
+
+            if (!DateOnly.TryParse(dateInput, out DateOnly date))
+            {
+                Console.WriteLine("Невалиден формат на дата.");
+                return PromptForDate();
+            }
+
+            if (date < DateOnly.FromDateTime(DateTime.Now))
+            {
+                Console.WriteLine("Не може да се прави резервация за минала дата.");
+                return PromptForDate();
+            }
+
+            return date;
+        }
+
+
+        private int? PromptForTableSelection(DateOnly date)
+        {
+            var freeTableIds = _restaurantTableService.GetFreeTableIdsForDate(date, _reservationService);
+
+            if (!freeTableIds.Any())
+            {
+                Console.WriteLine("Няма свободни маси за тази дата. Натисни Enter за нов опит...");
+                Console.ReadLine();
+                return null;
+            }
+
+            Console.WriteLine("Избери маса:");
+            for (int i = 0; i < freeTableIds.Count; i++)
+                Console.WriteLine($"{i + 1}. Маса №{freeTableIds[i]}");
+
+            Console.Write("Въведи номер на маса или 'b' за връщане назад: ");
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "b") return null;
+
+            if (!int.TryParse(input, out int choice) || choice < 1 || choice > freeTableIds.Count)
+            {
+                Console.WriteLine("Невалиден избор. Натисни Enter за нов опит...");
+                Console.ReadLine();
+                return PromptForTableSelection(date);
+            }
+
+            return freeTableIds[choice - 1];
+        }
+
+        private OperatingHour PromptForTimeSlot(DateOnly date, int tableId)
+        {
+            var freeHours = _operatingHourService.GetFreeOperatingHoursForTableAndDate(tableId, date, _reservationService);
+
+            if (!freeHours.Any())
+            {
+                Console.WriteLine("Няма свободни часове за избраната маса. Натисни Enter за нов опит...");
+                Console.ReadLine();
+                return null;
+            }
+
+            Console.WriteLine("Избери свободен часови интервал:");
+            for (int i = 0; i < freeHours.Count; i++)
+                Console.WriteLine($"{i + 1}. {freeHours[i].StartTime} - {freeHours[i].EndTime}");
+
+            Console.Write("Въведи номер на интервал или 'b' за връщане назад: ");
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "b") return null;
+
+            if (!int.TryParse(input, out int choice) || choice < 1 || choice > freeHours.Count)
+            {
+                Console.WriteLine("Невалиден избор. Натисни Enter за нов опит...");
+                Console.ReadLine();
+                return PromptForTimeSlot(date, tableId);
+            }
+
+            return freeHours[choice - 1];
+        }
+
+        private Reservation CollectReservationDetails(DateOnly date, int tableId, OperatingHour selectedHour)
+        {
+            Console.Write("Въведи своето име: ");
+            string name = Console.ReadLine();
+            Console.Write("Въведи имейл: ");
+            string email = Console.ReadLine();
+            Console.Write("Въведи телефон: ");
+            string phone = Console.ReadLine();
+            Console.Write("Допълнителни бележки (по избор): ");
+            string notes = Console.ReadLine();
+
+            return new Reservation
+            {
+                Name = name,
+                Email = email,
+                PhoneNumber = phone,
+                Notes = notes,
+                TableId = tableId,
+                OperatingHoursId = selectedHour.Id,
+                ReservationDate = date
+            };
+        }
+
+        private void TryToConfirmReservation(Reservation reservation)
+        {
+            try
+            {
+                _reservationService.CreateReservation(reservation).Wait();
+                Console.WriteLine("Код за потвърждение е изпратен на твоя имейл.");
+                Console.Write("Въведи кода: ");
+                string code = Console.ReadLine();
+                _reservationService.VerifyReservation(reservation, code);
+                Console.WriteLine("Резервацията е успешно потвърдена!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Грешка: {ex.Message}");
+            }
+        }
+
 
 
         public async Task ShowAdminReservationMenu()
@@ -182,12 +227,8 @@ namespace PresentationLayerConsole
 
         private async Task UpdateReservationAsync()
         {
-            Console.Write("ID на резервацията за обновяване: ");
-            if (!int.TryParse(Console.ReadLine(), out int id))
-            {
-                Console.WriteLine("Невалиден ID.");
-                return;
-            }
+            int id = PromptForReservationId("обновяване");
+            if (id == -1) return;
 
             try
             {
@@ -198,41 +239,7 @@ namespace PresentationLayerConsole
                     return;
                 }
 
-                Console.Write($"Ново име ({existing.Name}): ");
-                var nameInput = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(nameInput))
-                    existing.Name = nameInput;
-
-                Console.Write($"Нов имейл ({existing.Email}): ");
-                var emailInput = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(emailInput))
-                    existing.Email = emailInput;
-
-                Console.Write($"Нов телефонен номер ({existing.PhoneNumber}): ");
-                var phoneInput = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(phoneInput))
-                    existing.PhoneNumber = phoneInput;
-
-                Console.Write($"Нова маса ID ({existing.TableId}): ");
-                var tableInput = Console.ReadLine();
-                if (int.TryParse(tableInput, out int tableId))
-                    existing.TableId = tableId;
-
-                Console.Write($"Нов часови интервал ID ({existing.OperatingHoursId}): ");
-                var hourInput = Console.ReadLine();
-                if (int.TryParse(hourInput, out int hourId))
-                    existing.OperatingHoursId = hourId;
-
-                Console.Write($"Нова дата (гггг-мм-дд) ({existing.ReservationDate}): ");
-                var dateInput = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(dateInput) && DateOnly.TryParse(dateInput, out var newDate))
-                    existing.ReservationDate = newDate;
-
-                Console.Write("Бележки (по желание): ");
-                var notes = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(notes))
-                    existing.Notes = notes;
-
+                UpdateReservationFields(existing);
                 await _reservationService.UpdateReservation(existing);
             }
             catch (Exception ex)
@@ -241,15 +248,37 @@ namespace PresentationLayerConsole
             }
         }
 
+        private void UpdateReservationFields(Reservation existing)
+        {
+            existing.Name = PromptForUpdate($"Ново име", existing.Name);
+            existing.Email = PromptForUpdate($"Нов имейл", existing.Email);
+            existing.PhoneNumber = PromptForUpdate($"Нов телефонен номер", existing.PhoneNumber);
+
+            string tableInput = PromptForUpdate("Нова маса ID", existing.TableId?.ToString());
+            if (int.TryParse(tableInput, out int tableId)) existing.TableId = tableId;
+
+            string hourInput = PromptForUpdate("Нов часови интервал ID", existing.OperatingHoursId?.ToString());
+            if (int.TryParse(hourInput, out int hourId)) existing.OperatingHoursId = hourId;
+
+            string dateInput = PromptForUpdate("Нова дата (гггг-мм-дд)", existing.ReservationDate.ToString());
+            if (DateOnly.TryParse(dateInput, out var newDate)) existing.ReservationDate = newDate;
+
+            string notes = PromptForUpdate("Бележки (по желание)", existing.Notes);
+            if (!string.IsNullOrWhiteSpace(notes)) existing.Notes = notes;
+        }
+
+        private string PromptForUpdate(string label, string currentValue)
+        {
+            Console.Write($"{label} ({currentValue}): ");
+            var input = Console.ReadLine();
+            return string.IsNullOrWhiteSpace(input) ? currentValue : input;
+        }
+
 
         private async Task DeleteReservationAsync()
         {
-            Console.Write("ID на резервацията за изтриване: ");
-            if (!int.TryParse(Console.ReadLine(), out int id))
-            {
-                Console.WriteLine("Невалиден ID.");
-                return;
-            }
+            int id = PromptForReservationId("изтриване");
+            if (id == -1) return;
 
             try
             {
@@ -268,54 +297,68 @@ namespace PresentationLayerConsole
             }
         }
 
+        private int PromptForReservationId(string action)
+        {
+            Console.Write($"ID на резервацията за {action}: ");
+            if (int.TryParse(Console.ReadLine(), out int id)) return id;
+
+            Console.WriteLine("Невалиден ID.");
+            return -1;
+        }
+
 
         private void FilterReservations()
         {
             Console.WriteLine("=== Филтриране на резервации ===");
 
-            Console.Write("Въведете начална дата (гггг-мм-дд) или оставете празно: ");
-            DateOnly? startDate = TryParseOptionalDate(Console.ReadLine());
-
-            Console.Write("Въведете крайна дата (гггг-мм-дд) или оставете празно: ");
-            DateOnly? endDate = TryParseOptionalDate(Console.ReadLine());
-
-            Console.Write("Въведете конкретна дата (гггг-мм-дд) или оставете празно: ");
-            DateOnly? exactDate = TryParseOptionalDate(Console.ReadLine());
-
-            Console.Write("Въведете ID на маса или оставете празно: ");
-            int? tableId = TryParseOptionalInt(Console.ReadLine());
-
-            Console.Write("Само потвърдени? (y/n/празно): ");
-            bool? isVerified = TryParseOptionalBool(Console.ReadLine());
-
-            Console.Write("Включване на минали резервации? (y/n/празно): ");
-            bool? includePassed = TryParseOptionalBool(Console.ReadLine());
-
-            Console.Write("Включване на анулирани резервации? (y/n/празно): ");
-            bool? includeCancelled = TryParseOptionalBool(Console.ReadLine());
+            DateOnly? startDate = PromptOptionalDate("начална дата");
+            DateOnly? endDate = PromptOptionalDate("крайна дата");
+            DateOnly? exactDate = PromptOptionalDate("конкретна дата");
+            int? tableId = PromptOptionalInt("ID на маса");
+            bool? isVerified = PromptOptionalBool("Само потвърдени? (y/n/празно)");
+            bool? includePassed = PromptOptionalBool("Включване на минали резервации? (y/n/празно)");
+            bool? includeCancelled = PromptOptionalBool("Включване на анулирани резервации? (y/n/празно)");
 
             var filteredReservations = _reservationService.GetReservations(
-                startDate,
-                endDate,
-                exactDate,
-                tableId,
-                isVerified,
-                includePassed,
-                includeCancelled
-            );
+                startDate, endDate, exactDate, tableId, isVerified, includePassed, includeCancelled);
 
-            if (!filteredReservations.Any())
+            PrintReservations(filteredReservations);
+        }
+
+        private DateOnly? PromptOptionalDate(string label)
+        {
+            Console.Write($"Въведете {label} (гггг-мм-дд) или оставете празно: ");
+            return TryParseOptionalDate(Console.ReadLine());
+        }
+
+        private int? PromptOptionalInt(string label)
+        {
+            Console.Write($"Въведете {label} или оставете празно: ");
+            return TryParseOptionalInt(Console.ReadLine());
+        }
+
+        private bool? PromptOptionalBool(string label)
+        {
+            Console.Write($"{label}: ");
+            return TryParseOptionalBool(Console.ReadLine());
+        }
+
+        private void PrintReservations(IEnumerable<Reservation> reservations)
+        {
+            if (!reservations.Any())
             {
                 Console.WriteLine("Няма намерени резервации по зададените критерии.");
+                return;
             }
-            else
+
+            foreach (var r in reservations)
             {
-                foreach (var r in filteredReservations)
-                {
-                    Console.WriteLine($"ID: {r.Id}, Име: {r.Name}, Имейл: {r.Email}, Телефон: {r.PhoneNumber}, Маса: {r.TableId}, Дата: {r.ReservationDate}, Час: {r.OperatingHours?.StartTime}-{r.OperatingHours?.EndTime}, Потвърдена: {r.VerifiedByUser}");
-                }
+                Console.WriteLine(
+                    $"ID: {r.Id}, Име: {r.Name}, Имейл: {r.Email}, Телефон: {r.PhoneNumber}, " +
+                    $"Маса: {r.TableId}, Дата: {r.ReservationDate}, Час: {r.OperatingHours?.StartTime}-{r.OperatingHours?.EndTime}, Потвърдена: {r.VerifiedByUser}");
             }
         }
+
 
         private DateOnly? TryParseOptionalDate(string input)
         {

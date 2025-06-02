@@ -63,15 +63,44 @@ namespace PresentationLayerConsole
         {
             Console.Write("Описание: ");
             string description = Console.ReadLine()!;
+            if (string.IsNullOrWhiteSpace(description))
+            {
+                Console.WriteLine("Описанието не може да е празно.");
+                return;
+            }
 
             Console.Write("Начален час (формат: yyyy-MM-dd HH:mm): ");
-            DateTime start = DateTime.ParseExact(Console.ReadLine()!, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+            if (!DateTime.TryParseExact(Console.ReadLine(), "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime start))
+            {
+                Console.WriteLine("Невалиден начален час.");
+                return;
+            }
+
+            if (start <= DateTime.Now)
+            {
+                Console.WriteLine("Началният час трябва да не е минал.");
+                return;
+            }
 
             Console.Write("Краен час (формат: yyyy-MM-dd HH:mm): ");
-            DateTime end = DateTime.ParseExact(Console.ReadLine()!, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+            if (!DateTime.TryParseExact(Console.ReadLine(), "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime end))
+            {
+                Console.WriteLine("Невалиден краен час.");
+                return;
+            }
+
+            if (end <= start)
+            {
+                Console.WriteLine("Крайният час трябва да е след началния.");
+                return;
+            }
 
             Console.Write("ID на маса: ");
-            int tableId = int.Parse(Console.ReadLine()!);
+            if (!int.TryParse(Console.ReadLine(), out int tableId) || tableId <= 0)
+            {
+                Console.WriteLine("Невалиден ID на маса.");
+                return;
+            }
 
             var occasion = new SpecialOccasion
             {
@@ -113,21 +142,30 @@ namespace PresentationLayerConsole
 
             Console.Write($"Ново описание (текущо: {existing.Description}): ");
             var descInput = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(descInput)) existing.Description = descInput;
+            if (!string.IsNullOrWhiteSpace(descInput))
+                existing.Description = descInput;
 
             Console.Write($"Нов начален час (текущ: {existing.StartTime}, формат yyyy-MM-dd HH:mm): ");
             var startInput = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(startInput))
-                existing.StartTime = DateTime.ParseExact(startInput, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+            if (!string.IsNullOrWhiteSpace(startInput) &&
+                DateTime.TryParseExact(startInput, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime newStart))
+                existing.StartTime = newStart;
 
             Console.Write($"Нов краен час (текущ: {existing.EndTime}, формат yyyy-MM-dd HH:mm): ");
             var endInput = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(endInput))
-                existing.EndTime = DateTime.ParseExact(endInput, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+            if (!string.IsNullOrWhiteSpace(endInput) &&
+                DateTime.TryParseExact(endInput, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime newEnd))
+                existing.EndTime = newEnd;
+
+            if (existing.EndTime <= existing.StartTime)
+            {
+                Console.WriteLine("Крайният час трябва да е след началния.");
+                return;
+            }
 
             Console.Write($"Нов ID на маса (текущ: {existing.TableId}): ");
             var tableInput = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(tableInput) && int.TryParse(tableInput, out int newTableId))
+            if (!string.IsNullOrWhiteSpace(tableInput) && int.TryParse(tableInput, out int newTableId) && newTableId > 0)
                 existing.TableId = newTableId;
 
             bool updated = _occasionService.UpdateOccasion(existing);
