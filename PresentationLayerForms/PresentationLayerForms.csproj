@@ -12,6 +12,8 @@
     <None Remove="Resources\FormAdmin.jpg" />
     <None Remove="Resources\FormLogInAdmin.jpg" />
     <None Remove="Resources\FormReservation.jpg" />
+    <None Remove="Resources\FormSpecialOccasion.jpg" />
+    <None Remove="Resources\FormStart.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +24,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\FormReservation.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\FormSpecialOccasion.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\FormStart.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
