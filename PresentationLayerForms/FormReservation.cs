@@ -16,7 +16,7 @@ namespace PresentationLayerForms
     {
         private readonly ReservationService _reservationService;
         private readonly SpecialOccasionService _specialOccasionService;
-        private readonly OperatingHourService _operatingHourService; // You can create one or use context directly
+        private readonly OperatingHourService _operatingHourService;
         private readonly RestaurantTableService _restaurantTableService;
 
         private DateTime _currentWeekStart;
@@ -229,11 +229,6 @@ namespace PresentationLayerForms
         }
 
         private void textBoxEmail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonSubmitReservation_Click(object sender, EventArgs e)
         {
 
         }

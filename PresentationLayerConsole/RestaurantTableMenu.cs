@@ -58,33 +58,38 @@ namespace PresentationLayerConsole
             }
         }
 
+        private string PromptForTableType(string? currentType = null)
+        {
+            while (true)
+            {
+                if (currentType != null)
+                    Console.Write($"Нов тип (текущ: {currentType}) (вътрешна/външна/вип): ");
+                else
+                    Console.Write("Тип маса (вътрешна/външна/вип): ");
+
+                var input = Console.ReadLine()?.Trim().ToLower();
+
+                switch (input)
+                {
+                    case "вътрешна": return "standart";
+                    case "външна": return "outdoor";
+                    case "вип": return "vip";
+                }
+
+                Console.WriteLine("Невалиден тип. Моля въведете 'вътрешна', 'външна' или 'вип'.");
+            }
+        }
+
         private void AddTable()
         {
             Console.Write("Номер на маса: ");
-            int number = int.Parse(Console.ReadLine()!);
-
-            string type;
-            while (true)
+            if (!int.TryParse(Console.ReadLine(), out int number))
             {
-                Console.Write("Тип маса (вътрешна/външна/вип): ");
-                type = Console.ReadLine()!;
-                if (type == "вътрешна")
-                {
-                    type = "standart";
-                    break;
-                }
-                else if (type == "външна")
-                {
-                    type = "outdoor";
-                    break;
-                }
-                else if (type == "вип")
-                {
-                    type = "vip";
-                    break;
-                }
-                Console.WriteLine("Невалиден тип. Моля въведете 'вътрешна', 'външна' или 'вип'.");
+                Console.WriteLine("Невалиден номер.");
+                return;
             }
+
+            string type = PromptForTableType();
 
             Console.Write("Описание: ");
             string description = Console.ReadLine()!;
@@ -107,16 +112,6 @@ namespace PresentationLayerConsole
             }
         }
 
-
-        private void ViewTables()
-        {
-            var tables = _tableService.GetAllTables();
-            Console.WriteLine("Списък с маси:");
-            foreach (var t in tables)
-            {
-                Console.WriteLine($"ID: {t.Id}, Номер: {t.Number}, Тип: {t.Type}, Описание: {t.Description}");
-            }
-        }
         private void EditTable()
         {
             Console.Write("ID на масата за редактиране: ");
@@ -138,10 +133,7 @@ namespace PresentationLayerConsole
             if (!string.IsNullOrWhiteSpace(numberInput) && int.TryParse(numberInput, out int newNumber))
                 table.Number = newNumber;
 
-            Console.Write($"Нов тип (текущ: {table.Type}): ");
-            var typeInput = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(typeInput))
-                table.Type = typeInput;
+            table.Type = PromptForTableType(table.Type);
 
             Console.Write($"Ново описание (текущо: {table.Description}): ");
             var descriptionInput = Console.ReadLine();
@@ -154,15 +146,33 @@ namespace PresentationLayerConsole
                 Console.WriteLine("Грешка при обновяване.");
         }
 
+        private void ViewTables()
+        {
+            var tables = _tableService.GetAllTables();
+            Console.WriteLine("Списък с маси:");
+            foreach (var t in tables)
+            {
+                Console.WriteLine($"ID: {t.Id}, Номер: {t.Number}, Тип: {t.Type}, Описание: {t.Description}");
+            }
+        }
+
+
         private void DeleteTable()
         {
             Console.Write("ID на масата за изтриване: ");
-            int id = int.Parse(Console.ReadLine()!);
+            string input = Console.ReadLine();
+
+            if (!int.TryParse(input, out int id) || id <= 0)
+            {
+                Console.WriteLine("Невалидено ID. Моля, въведете положително цяло число.");
+                return;
+            }
 
             if (_tableService.DeleteTable(id))
                 Console.WriteLine("Масата е изтрита.");
             else
                 Console.WriteLine("Масата не беше намерена или вече е изтрита.");
         }
+
     }
 }

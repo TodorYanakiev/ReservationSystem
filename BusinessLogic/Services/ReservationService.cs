@@ -27,16 +27,55 @@ namespace BusinessLogic.Services
 
         public async Task CreateReservation(Reservation reservation)
         {
+            ValidateReservation(reservation);
+
             CheckIfThereIsReservationWithTheSameDateAndTimeForTable(reservation);
+
             reservation.VerificationCode = CreateVerificationCodeForReservation();
             reservation.VerifiedByUser = false;
             reservation.CreatedAt = DateTime.Now;
+
             _context.Reservations.Add(reservation);
             _context.SaveChanges();
 
             await emailService.SendEmailAsync(reservation.Email, "Verification code",
                 $"Your verification code is: {reservation.VerificationCode}");
         }
+
+        private void ValidateReservation(Reservation reservation)
+        {
+            if (string.IsNullOrWhiteSpace(reservation.Name))
+                throw new ArgumentException("Името е задължително.");
+
+            if (string.IsNullOrWhiteSpace(reservation.Email) || !IsValidEmail(reservation.Email))
+                throw new ArgumentException("Невалиден имейл адрес.");
+
+            if (string.IsNullOrWhiteSpace(reservation.PhoneNumber) || reservation.PhoneNumber.Length < 6)
+                throw new ArgumentException("Невалиден телефонен номер.");
+
+            if (reservation.TableId == null || reservation.TableId <= 0)
+                throw new ArgumentException("Моля, изберете валидна маса.");
+
+            if (reservation.OperatingHoursId == null || reservation.OperatingHoursId <= 0)
+                throw new ArgumentException("Моля, изберете валиден часови интервал.");
+
+            if (reservation.ReservationDate < DateOnly.FromDateTime(DateTime.Now))
+                throw new ArgumentException("Не може да правите резервации за минали дати.");
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
         public void VerifyReservation(Reservation reservation, string code)
         {
