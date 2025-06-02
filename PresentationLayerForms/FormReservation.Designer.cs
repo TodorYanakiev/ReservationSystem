@@ -161,7 +161,7 @@
             flowLayoutCalendar.AutoScroll = true;
             flowLayoutCalendar.Location = new Point(479, 139);
             flowLayoutCalendar.Name = "flowLayoutCalendar";
-            flowLayoutCalendar.Size = new Size(417, 241);
+            flowLayoutCalendar.Size = new Size(919, 241);
             flowLayoutCalendar.TabIndex = 18;
             flowLayoutCalendar.Paint += flowLayoutCalendar_Paint;
             // 
@@ -231,7 +231,7 @@
             BackColor = SystemColors.Control;
             BackgroundImage = Properties.Resources.FormReservation;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(923, 497);
+            ClientSize = new Size(1416, 497);
             Controls.Add(label1);
             Controls.Add(lblNotes);
             Controls.Add(lblPhone);
