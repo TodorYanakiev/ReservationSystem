@@ -52,7 +52,7 @@
             btnMenu.FlatStyle = FlatStyle.Flat;
             btnMenu.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold);
             btnMenu.ForeColor = Color.Gold;
-            btnMenu.Location = new Point(130, 411);
+            btnMenu.Location = new Point(214, 501);
             btnMenu.Name = "btnMenu";
             btnMenu.Size = new Size(199, 64);
             btnMenu.TabIndex = 1;
@@ -67,7 +67,7 @@
             lblNotes.FlatStyle = FlatStyle.Flat;
             lblNotes.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblNotes.ForeColor = Color.White;
-            lblNotes.Location = new Point(21, 269);
+            lblNotes.Location = new Point(21, 295);
             lblNotes.Name = "lblNotes";
             lblNotes.Size = new Size(105, 28);
             lblNotes.TabIndex = 27;
@@ -80,7 +80,7 @@
             lblPhone.FlatStyle = FlatStyle.Flat;
             lblPhone.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblPhone.ForeColor = Color.White;
-            lblPhone.Location = new Point(21, 200);
+            lblPhone.Location = new Point(21, 220);
             lblPhone.Name = "lblPhone";
             lblPhone.Size = new Size(101, 28);
             lblPhone.TabIndex = 26;
@@ -93,7 +93,7 @@
             lblEmail.FlatStyle = FlatStyle.Flat;
             lblEmail.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblEmail.ForeColor = Color.White;
-            lblEmail.Location = new Point(21, 149);
+            lblEmail.Location = new Point(21, 160);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(85, 28);
             lblEmail.TabIndex = 25;
@@ -118,7 +118,7 @@
             buttonSubmitReservation.FlatStyle = FlatStyle.Flat;
             buttonSubmitReservation.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold);
             buttonSubmitReservation.ForeColor = Color.GreenYellow;
-            buttonSubmitReservation.Location = new Point(594, 483);
+            buttonSubmitReservation.Location = new Point(1001, 501);
             buttonSubmitReservation.Name = "buttonSubmitReservation";
             buttonSubmitReservation.Size = new Size(199, 64);
             buttonSubmitReservation.TabIndex = 23;
@@ -128,7 +128,7 @@
             // 
             // textBoxNotes
             // 
-            textBoxNotes.Location = new Point(127, 275);
+            textBoxNotes.Location = new Point(127, 301);
             textBoxNotes.Multiline = true;
             textBoxNotes.Name = "textBoxNotes";
             textBoxNotes.Size = new Size(286, 105);
@@ -136,14 +136,14 @@
             // 
             // textBoxPhone
             // 
-            textBoxPhone.Location = new Point(127, 204);
+            textBoxPhone.Location = new Point(127, 220);
             textBoxPhone.Name = "textBoxPhone";
             textBoxPhone.Size = new Size(202, 27);
             textBoxPhone.TabIndex = 21;
             // 
             // textBoxEmail
             // 
-            textBoxEmail.Location = new Point(127, 155);
+            textBoxEmail.Location = new Point(127, 160);
             textBoxEmail.Name = "textBoxEmail";
             textBoxEmail.Size = new Size(202, 27);
             textBoxEmail.TabIndex = 20;
@@ -151,7 +151,7 @@
             // 
             // textBoxName
             // 
-            textBoxName.Location = new Point(127, 101);
+            textBoxName.Location = new Point(127, 100);
             textBoxName.Name = "textBoxName";
             textBoxName.Size = new Size(202, 27);
             textBoxName.TabIndex = 19;
@@ -194,7 +194,7 @@
             // comboBoxTables
             // 
             comboBoxTables.FormattingEnabled = true;
-            comboBoxTables.Location = new Point(648, 100);
+            comboBoxTables.Location = new Point(634, 97);
             comboBoxTables.Name = "comboBoxTables";
             comboBoxTables.Size = new Size(220, 28);
             comboBoxTables.TabIndex = 15;
@@ -206,7 +206,7 @@
             lblSelectTable.FlatStyle = FlatStyle.Flat;
             lblSelectTable.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSelectTable.ForeColor = Color.White;
-            lblSelectTable.Location = new Point(493, 100);
+            lblSelectTable.Location = new Point(479, 97);
             lblSelectTable.Name = "lblSelectTable";
             lblSelectTable.Size = new Size(145, 28);
             lblSelectTable.TabIndex = 14;
@@ -216,11 +216,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(250, 20);
+            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 204);
+            label1.ForeColor = Color.GreenYellow;
+            label1.Location = new Point(490, 25);
             label1.Name = "label1";
-            label1.Size = new Size(417, 38);
+            label1.Size = new Size(501, 46);
             label1.TabIndex = 28;
             label1.Text = "Направи своята резервация";
             // 
@@ -230,7 +230,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             BackgroundImage = Properties.Resources.FormReservation;
-            BackgroundImageLayout = ImageLayout.Stretch;
+            BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(1456, 607);
             Controls.Add(label1);
             Controls.Add(lblNotes);
