@@ -40,7 +40,7 @@ namespace PresentationLayerForms
 
             FormAdmin formAdmin = new FormAdmin();
             formAdmin.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void textBoxUsernameAdmin_TextChanged(object sender, EventArgs e)
@@ -57,7 +57,7 @@ namespace PresentationLayerForms
         {
             FormStart formStart = new FormStart();
             formStart.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void FormLogInAdmin_Load(object sender, EventArgs e)

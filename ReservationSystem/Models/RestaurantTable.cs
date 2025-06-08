@@ -22,4 +22,9 @@ public partial class RestaurantTable
     public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
 
     public virtual ICollection<SpecialOccasion> SpecialOccasions { get; set; } = new List<SpecialOccasion>();
+
+    public override string ToString()
+    {
+        return $"№{Number}; type: {Type}; description: {Description}";
+    }
 }
