@@ -61,7 +61,7 @@ namespace PresentationLayerForms
             btnAddReservation.Name = "btnAddReservation";
             btnAddReservation.Size = new Size(149, 70);
             btnAddReservation.TabIndex = 6;
-            btnAddReservation.Text = "Добави резервация";
+            btnAddReservation.Text = "Работно време";
             btnAddReservation.UseVisualStyleBackColor = false;
             btnAddReservation.Click += btnAddReservation_Click;
             // 
@@ -88,7 +88,6 @@ namespace PresentationLayerForms
             label1.Size = new Size(418, 41);
             label1.TabIndex = 4;
             label1.Text = "Администраторски панел";
-            label1.Click += label1_Click;
             // 
             // flowLayoutPanel1
             // 
@@ -289,7 +288,6 @@ namespace PresentationLayerForms
             btnBack.TabIndex = 22;
             btnBack.Text = "Назад";
             btnBack.UseVisualStyleBackColor = false;
-            btnBack.Click += btnBack_Click;
             // 
             // button1
             // 
