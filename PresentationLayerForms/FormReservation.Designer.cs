@@ -52,7 +52,7 @@
             btnMenu.FlatStyle = FlatStyle.Flat;
             btnMenu.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold);
             btnMenu.ForeColor = Color.Gold;
-            btnMenu.Location = new Point(214, 501);
+            btnMenu.Location = new Point(214, 491);
             btnMenu.Name = "btnMenu";
             btnMenu.Size = new Size(199, 64);
             btnMenu.TabIndex = 1;
@@ -118,7 +118,7 @@
             buttonSubmitReservation.FlatStyle = FlatStyle.Flat;
             buttonSubmitReservation.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold);
             buttonSubmitReservation.ForeColor = Color.GreenYellow;
-            buttonSubmitReservation.Location = new Point(1001, 501);
+            buttonSubmitReservation.Location = new Point(1001, 491);
             buttonSubmitReservation.Name = "buttonSubmitReservation";
             buttonSubmitReservation.Size = new Size(199, 64);
             buttonSubmitReservation.TabIndex = 23;
@@ -218,7 +218,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 204);
             label1.ForeColor = Color.GreenYellow;
-            label1.Location = new Point(490, 25);
+            label1.Location = new Point(479, 18);
             label1.Name = "label1";
             label1.Size = new Size(501, 46);
             label1.TabIndex = 28;
@@ -231,7 +231,7 @@
             BackColor = SystemColors.Control;
             BackgroundImage = Properties.Resources.FormReservation;
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(1456, 607);
+            ClientSize = new Size(1420, 572);
             Controls.Add(label1);
             Controls.Add(lblNotes);
             Controls.Add(lblPhone);

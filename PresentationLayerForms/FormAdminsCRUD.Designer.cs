@@ -49,11 +49,11 @@
             // 
             tabControlAdmin.Controls.Add(tabAddAdmin);
             tabControlAdmin.Controls.Add(tabManageAdmins);
-            tabControlAdmin.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            tabControlAdmin.Location = new Point(41, 92);
+            tabControlAdmin.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            tabControlAdmin.Location = new Point(133, 103);
             tabControlAdmin.Name = "tabControlAdmin";
             tabControlAdmin.SelectedIndex = 0;
-            tabControlAdmin.Size = new Size(840, 289);
+            tabControlAdmin.Size = new Size(1159, 349);
             tabControlAdmin.TabIndex = 0;
             // 
             // tabAddAdmin
@@ -63,10 +63,10 @@
             tabAddAdmin.Controls.Add(lblPassword);
             tabAddAdmin.Controls.Add(txtUsername);
             tabAddAdmin.Controls.Add(lblUsername);
-            tabAddAdmin.Location = new Point(4, 32);
+            tabAddAdmin.Location = new Point(4, 37);
             tabAddAdmin.Name = "tabAddAdmin";
             tabAddAdmin.Padding = new Padding(3);
-            tabAddAdmin.Size = new Size(832, 253);
+            tabAddAdmin.Size = new Size(1151, 308);
             tabAddAdmin.TabIndex = 0;
             tabAddAdmin.Text = "Добави";
             tabAddAdmin.UseVisualStyleBackColor = true;
@@ -74,16 +74,17 @@
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(361, 114);
+            txtPassword.Location = new Point(478, 141);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(351, 30);
+            txtPassword.Size = new Size(351, 34);
             txtPassword.TabIndex = 4;
             // 
             // btnAddAdmin
             // 
-            btnAddAdmin.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold);
-            btnAddAdmin.Location = new Point(608, 180);
+            btnAddAdmin.Font = new Font("Segoe UI Variable Text", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAddAdmin.ForeColor = Color.Coral;
+            btnAddAdmin.Location = new Point(904, 228);
             btnAddAdmin.Name = "btnAddAdmin";
             btnAddAdmin.Size = new Size(202, 55);
             btnAddAdmin.TabIndex = 3;
@@ -94,37 +95,39 @@
             // lblPassword
             // 
             lblPassword.AutoSize = true;
-            lblPassword.Font = new Font("Segoe UI", 14.2F, FontStyle.Bold | FontStyle.Italic);
-            lblPassword.Location = new Point(43, 109);
+            lblPassword.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
+            lblPassword.ForeColor = Color.DarkGreen;
+            lblPassword.Location = new Point(280, 137);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(110, 32);
+            lblPassword.Size = new Size(127, 38);
             lblPassword.TabIndex = 2;
             lblPassword.Text = "Парола:";
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(361, 39);
+            txtUsername.Location = new Point(478, 66);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(351, 30);
+            txtUsername.Size = new Size(351, 34);
             txtUsername.TabIndex = 1;
             // 
             // lblUsername
             // 
             lblUsername.AutoSize = true;
-            lblUsername.Font = new Font("Segoe UI", 14.2F, FontStyle.Bold | FontStyle.Italic);
-            lblUsername.Location = new Point(43, 34);
+            lblUsername.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
+            lblUsername.ForeColor = Color.DarkGreen;
+            lblUsername.Location = new Point(110, 66);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(268, 32);
+            lblUsername.Size = new Size(297, 38);
             lblUsername.TabIndex = 0;
             lblUsername.Text = "Потребителско име:";
             // 
             // tabManageAdmins
             // 
             tabManageAdmins.Controls.Add(flowAdmins);
-            tabManageAdmins.Location = new Point(4, 32);
+            tabManageAdmins.Location = new Point(4, 37);
             tabManageAdmins.Name = "tabManageAdmins";
             tabManageAdmins.Padding = new Padding(3);
-            tabManageAdmins.Size = new Size(832, 253);
+            tabManageAdmins.Size = new Size(1151, 308);
             tabManageAdmins.TabIndex = 1;
             tabManageAdmins.Text = "Виж администратори";
             tabManageAdmins.UseVisualStyleBackColor = true;
@@ -134,42 +137,48 @@
             flowAdmins.AutoScroll = true;
             flowAdmins.Location = new Point(6, 8);
             flowAdmins.Name = "flowAdmins";
-            flowAdmins.Size = new Size(818, 239);
+            flowAdmins.Size = new Size(1139, 294);
             flowAdmins.TabIndex = 0;
             // 
             // btnAdminMenu
             // 
-            btnAdminMenu.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            btnAdminMenu.Location = new Point(565, 388);
+            btnAdminMenu.BackColor = Color.Transparent;
+            btnAdminMenu.FlatStyle = FlatStyle.Flat;
+            btnAdminMenu.Font = new Font("Segoe UI Variable Display", 13.8F, FontStyle.Bold);
+            btnAdminMenu.ForeColor = Color.DarkGreen;
+            btnAdminMenu.Location = new Point(780, 472);
             btnAdminMenu.Margin = new Padding(3, 4, 3, 4);
             btnAdminMenu.Name = "btnAdminMenu";
-            btnAdminMenu.Size = new Size(222, 81);
+            btnAdminMenu.Size = new Size(347, 77);
             btnAdminMenu.TabIndex = 14;
-            btnAdminMenu.Text = "Меню на администратор";
-            btnAdminMenu.UseVisualStyleBackColor = true;
+            btnAdminMenu.Text = "Администраторско меню";
+            btnAdminMenu.UseVisualStyleBackColor = false;
             btnAdminMenu.Click += btnAdminMenu_Click;
             // 
             // btnHome
             // 
-            btnHome.Font = new Font("Segoe UI Variable Display", 12F, FontStyle.Bold);
-            btnHome.Location = new Point(134, 388);
+            btnHome.BackColor = Color.Transparent;
+            btnHome.FlatStyle = FlatStyle.Flat;
+            btnHome.Font = new Font("Segoe UI Variable Display", 13.8F, FontStyle.Bold);
+            btnHome.ForeColor = Color.DarkGreen;
+            btnHome.Location = new Point(341, 472);
             btnHome.Margin = new Padding(3, 4, 3, 4);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(222, 81);
+            btnHome.Size = new Size(347, 77);
             btnHome.TabIndex = 13;
             btnHome.Text = "Начално меню";
-            btnHome.UseVisualStyleBackColor = true;
+            btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold | FontStyle.Italic);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(258, 25);
+            label1.Location = new Point(484, 32);
             label1.Name = "label1";
-            label1.Size = new Size(422, 38);
+            label1.Size = new Size(508, 46);
             label1.TabIndex = 29;
             label1.Text = "Добави нов администратор";
             // 
@@ -177,7 +186,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(923, 497);
+            BackgroundImage = Properties.Resources.FormAdminsCRUD;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1420, 572);
             Controls.Add(label1);
             Controls.Add(btnAdminMenu);
             Controls.Add(btnHome);

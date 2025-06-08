@@ -39,8 +39,8 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 24F, FontStyle.Bold | FontStyle.Italic);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(337, 47);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(125, 47);
             label1.Name = "label1";
             label1.Size = new Size(808, 54);
             label1.TabIndex = 0;
@@ -51,22 +51,23 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 24F, FontStyle.Bold | FontStyle.Italic);
-            label2.ForeColor = Color.Transparent;
-            label2.Location = new Point(457, 102);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(260, 115);
             label2.Name = "label2";
             label2.Size = new Size(525, 54);
             label2.TabIndex = 1;
             label2.Text = "Вашата маса Ви очаква!";
+            label2.Click += label2_Click;
             // 
             // btnUser
             // 
-            btnUser.BackColor = Color.White;
+            btnUser.BackColor = Color.Transparent;
             btnUser.FlatAppearance.MouseOverBackColor = Color.Silver;
             btnUser.FlatStyle = FlatStyle.Flat;
             btnUser.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            btnUser.ForeColor = Color.DarkGoldenrod;
+            btnUser.ForeColor = Color.DarkOrange;
             btnUser.ImageAlign = ContentAlignment.TopRight;
-            btnUser.Location = new Point(154, 341);
+            btnUser.Location = new Point(279, 218);
             btnUser.Name = "btnUser";
             btnUser.Size = new Size(493, 105);
             btnUser.TabIndex = 2;
@@ -76,13 +77,13 @@
             // 
             // btnAdmin
             // 
-            btnAdmin.BackColor = Color.White;
+            btnAdmin.BackColor = Color.Transparent;
             btnAdmin.FlatStyle = FlatStyle.Flat;
             btnAdmin.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            btnAdmin.ForeColor = Color.RoyalBlue;
-            btnAdmin.Location = new Point(820, 341);
+            btnAdmin.ForeColor = Color.SteelBlue;
+            btnAdmin.Location = new Point(315, 353);
             btnAdmin.Name = "btnAdmin";
-            btnAdmin.Size = new Size(493, 105);
+            btnAdmin.Size = new Size(437, 99);
             btnAdmin.TabIndex = 3;
             btnAdmin.Text = "Влез като Администратор";
             btnAdmin.UseVisualStyleBackColor = false;
@@ -95,7 +96,7 @@
             BackColor = SystemColors.Control;
             BackgroundImage = Properties.Resources.FormStart;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1456, 607);
+            ClientSize = new Size(1420, 572);
             Controls.Add(btnAdmin);
             Controls.Add(btnUser);
             Controls.Add(label2);

@@ -52,51 +52,55 @@
             // labelTableNumber
             // 
             labelTableNumber.AutoSize = true;
-            labelTableNumber.Location = new Point(18, 59);
+            labelTableNumber.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
+            labelTableNumber.Location = new Point(40, 105);
             labelTableNumber.Name = "labelTableNumber";
-            labelTableNumber.Size = new Size(133, 20);
+            labelTableNumber.Size = new Size(258, 38);
             labelTableNumber.TabIndex = 0;
             labelTableNumber.Text = "Номер на масата:";
             // 
             // labelTableType
             // 
             labelTableType.AutoSize = true;
-            labelTableType.Location = new Point(18, 108);
+            labelTableType.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
+            labelTableType.Location = new Point(40, 195);
             labelTableType.Name = "labelTableType";
-            labelTableType.Size = new Size(111, 20);
+            labelTableType.Size = new Size(219, 38);
             labelTableType.TabIndex = 1;
             labelTableType.Text = "Вид на масата:";
             // 
             // lableTableDescription
             // 
             lableTableDescription.AutoSize = true;
-            lableTableDescription.Location = new Point(18, 149);
+            lableTableDescription.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
+            lableTableDescription.Location = new Point(632, 98);
             lableTableDescription.Name = "lableTableDescription";
-            lableTableDescription.Size = new Size(82, 20);
+            lableTableDescription.Size = new Size(159, 38);
             lableTableDescription.TabIndex = 2;
             lableTableDescription.Text = "Описание:";
             // 
             // textBoxTableNumber
             // 
-            textBoxTableNumber.Location = new Point(165, 55);
+            textBoxTableNumber.Location = new Point(331, 109);
             textBoxTableNumber.Name = "textBoxTableNumber";
-            textBoxTableNumber.Size = new Size(125, 27);
+            textBoxTableNumber.Size = new Size(125, 34);
             textBoxTableNumber.TabIndex = 3;
             // 
             // richTextBoxTableDescription
             // 
-            richTextBoxTableDescription.Location = new Point(154, 149);
+            richTextBoxTableDescription.Location = new Point(815, 109);
             richTextBoxTableDescription.Name = "richTextBoxTableDescription";
-            richTextBoxTableDescription.Size = new Size(222, 65);
+            richTextBoxTableDescription.Size = new Size(283, 158);
             richTextBoxTableDescription.TabIndex = 4;
             richTextBoxTableDescription.Text = "";
             // 
             // radioBtnStandart
             // 
             radioBtnStandart.AutoSize = true;
-            radioBtnStandart.Location = new Point(165, 108);
+            radioBtnStandart.Font = new Font("Segoe UI", 16.2F);
+            radioBtnStandart.Location = new Point(274, 192);
             radioBtnStandart.Name = "radioBtnStandart";
-            radioBtnStandart.Size = new Size(108, 24);
+            radioBtnStandart.Size = new Size(178, 42);
             radioBtnStandart.TabIndex = 5;
             radioBtnStandart.TabStop = true;
             radioBtnStandart.Text = "стандартна";
@@ -105,9 +109,10 @@
             // radioButtonVIP
             // 
             radioButtonVIP.AutoSize = true;
-            radioButtonVIP.Location = new Point(295, 108);
+            radioButtonVIP.Font = new Font("Segoe UI", 16.2F);
+            radioButtonVIP.Location = new Point(458, 192);
             radioButtonVIP.Name = "radioButtonVIP";
-            radioButtonVIP.Size = new Size(51, 24);
+            radioButtonVIP.Size = new Size(78, 42);
             radioButtonVIP.TabIndex = 6;
             radioButtonVIP.TabStop = true;
             radioButtonVIP.Text = "VIP";
@@ -116,9 +121,10 @@
             // radioButtonOutdoor
             // 
             radioButtonOutdoor.AutoSize = true;
-            radioButtonOutdoor.Location = new Point(363, 107);
+            radioButtonOutdoor.Font = new Font("Segoe UI", 16.2F);
+            radioButtonOutdoor.Location = new Point(542, 192);
             radioButtonOutdoor.Name = "radioButtonOutdoor";
-            radioButtonOutdoor.Size = new Size(85, 24);
+            radioButtonOutdoor.Size = new Size(138, 42);
             radioButtonOutdoor.TabIndex = 7;
             radioButtonOutdoor.TabStop = true;
             radioButtonOutdoor.Text = "външна";
@@ -127,21 +133,23 @@
             // 
             // btnAddTable
             // 
-            btnAddTable.Location = new Point(18, 220);
+            btnAddTable.Font = new Font("Segoe UI Variable Text", 16.2F, FontStyle.Bold);
+            btnAddTable.ForeColor = Color.IndianRed;
+            btnAddTable.Location = new Point(440, 304);
             btnAddTable.Name = "btnAddTable";
-            btnAddTable.Size = new Size(358, 65);
+            btnAddTable.Size = new Size(327, 62);
             btnAddTable.TabIndex = 8;
-            btnAddTable.Text = "Добави маса";
+            btnAddTable.Text = "Добави";
             btnAddTable.UseVisualStyleBackColor = true;
             btnAddTable.Click += btnAddTable_Click;
             // 
             // labelTitle
             // 
             labelTitle.AutoSize = true;
-            labelTitle.Font = new Font("Segoe UI", 14F);
-            labelTitle.Location = new Point(73, 19);
+            labelTitle.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold | FontStyle.Italic);
+            labelTitle.Location = new Point(440, 16);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(217, 32);
+            labelTitle.Size = new Size(325, 46);
             labelTitle.TabIndex = 9;
             labelTitle.Text = "Добави нова маса";
             labelTitle.Click += labelTitle_Click;
@@ -150,10 +158,11 @@
             // 
             tabControlTables.Controls.Add(add);
             tabControlTables.Controls.Add(all);
-            tabControlTables.Location = new Point(52, 12);
+            tabControlTables.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            tabControlTables.Location = new Point(128, 25);
             tabControlTables.Name = "tabControlTables";
             tabControlTables.SelectedIndex = 0;
-            tabControlTables.Size = new Size(830, 383);
+            tabControlTables.Size = new Size(1161, 437);
             tabControlTables.TabIndex = 10;
             // 
             // add
@@ -168,10 +177,10 @@
             add.Controls.Add(textBoxTableNumber);
             add.Controls.Add(radioBtnStandart);
             add.Controls.Add(richTextBoxTableDescription);
-            add.Location = new Point(4, 29);
+            add.Location = new Point(4, 37);
             add.Name = "add";
-            add.Padding = new Padding(3, 3, 3, 3);
-            add.Size = new Size(822, 350);
+            add.Padding = new Padding(3);
+            add.Size = new Size(1153, 396);
             add.TabIndex = 0;
             add.Text = "Добави";
             add.UseVisualStyleBackColor = true;
@@ -180,10 +189,10 @@
             // all
             // 
             all.Controls.Add(flowTables);
-            all.Location = new Point(4, 29);
+            all.Location = new Point(4, 37);
             all.Name = "all";
-            all.Padding = new Padding(3, 3, 3, 3);
-            all.Size = new Size(822, 314);
+            all.Padding = new Padding(3);
+            all.Size = new Size(1153, 396);
             all.TabIndex = 1;
             all.Text = "Всички";
             all.UseVisualStyleBackColor = true;
@@ -192,17 +201,19 @@
             // flowTables
             // 
             flowTables.AutoScroll = true;
-            flowTables.Location = new Point(6, 26);
+            flowTables.Location = new Point(28, 19);
             flowTables.Name = "flowTables";
-            flowTables.Size = new Size(799, 265);
+            flowTables.Size = new Size(1091, 357);
             flowTables.TabIndex = 0;
             flowTables.Paint += flowTables_Paint;
             // 
             // btnHome
             // 
-            btnHome.Location = new Point(104, 401);
+            btnHome.Font = new Font("Segoe UI Variable Display", 13.8F, FontStyle.Bold);
+            btnHome.ForeColor = Color.Maroon;
+            btnHome.Location = new Point(224, 471);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(197, 51);
+            btnHome.Size = new Size(347, 77);
             btnHome.TabIndex = 11;
             btnHome.Text = "Начално меню";
             btnHome.UseVisualStyleBackColor = true;
@@ -210,11 +221,13 @@
             // 
             // btnAdminMenu
             // 
-            btnAdminMenu.Location = new Point(667, 401);
+            btnAdminMenu.Font = new Font("Segoe UI Variable Display", 13.8F, FontStyle.Bold);
+            btnAdminMenu.ForeColor = Color.Maroon;
+            btnAdminMenu.Location = new Point(853, 471);
             btnAdminMenu.Name = "btnAdminMenu";
-            btnAdminMenu.Size = new Size(138, 51);
+            btnAdminMenu.Size = new Size(347, 77);
             btnAdminMenu.TabIndex = 12;
-            btnAdminMenu.Text = "Меню на администратор";
+            btnAdminMenu.Text = "Администраторско меню";
             btnAdminMenu.UseVisualStyleBackColor = true;
             btnAdminMenu.Click += btnAdminMenu_Click;
             // 
@@ -222,7 +235,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(923, 497);
+            BackgroundImage = Properties.Resources.FormRestaurantTable;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1420, 572);
             Controls.Add(btnAdminMenu);
             Controls.Add(btnHome);
             Controls.Add(tabControlTables);
