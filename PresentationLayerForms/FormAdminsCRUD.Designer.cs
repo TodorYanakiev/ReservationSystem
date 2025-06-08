@@ -58,6 +58,7 @@
             // 
             // tabAddAdmin
             // 
+            tabAddAdmin.Controls.Add(label1);
             tabAddAdmin.Controls.Add(txtPassword);
             tabAddAdmin.Controls.Add(btnAddAdmin);
             tabAddAdmin.Controls.Add(lblPassword);
@@ -74,7 +75,7 @@
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(478, 141);
+            txtPassword.Location = new Point(455, 215);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(351, 34);
@@ -97,7 +98,7 @@
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
             lblPassword.ForeColor = Color.DarkGreen;
-            lblPassword.Location = new Point(280, 137);
+            lblPassword.Location = new Point(257, 211);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(127, 38);
             lblPassword.TabIndex = 2;
@@ -105,7 +106,7 @@
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(478, 66);
+            txtUsername.Location = new Point(455, 140);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(351, 34);
             txtUsername.TabIndex = 1;
@@ -115,7 +116,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
             lblUsername.ForeColor = Color.DarkGreen;
-            lblUsername.Location = new Point(110, 66);
+            lblUsername.Location = new Point(87, 140);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(297, 38);
             lblUsername.TabIndex = 0;
@@ -176,7 +177,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold | FontStyle.Italic);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(484, 32);
+            label1.Location = new Point(341, 32);
             label1.Name = "label1";
             label1.Size = new Size(508, 46);
             label1.TabIndex = 29;
@@ -189,7 +190,6 @@
             BackgroundImage = Properties.Resources.FormAdminsCRUD;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1420, 572);
-            Controls.Add(label1);
             Controls.Add(btnAdminMenu);
             Controls.Add(btnHome);
             Controls.Add(tabControlAdmin);
@@ -201,7 +201,6 @@
             tabAddAdmin.PerformLayout();
             tabManageAdmins.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

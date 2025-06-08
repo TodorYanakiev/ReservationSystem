@@ -81,7 +81,7 @@
             btnAdmin.FlatStyle = FlatStyle.Flat;
             btnAdmin.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
             btnAdmin.ForeColor = Color.SteelBlue;
-            btnAdmin.Location = new Point(315, 353);
+            btnAdmin.Location = new Point(306, 351);
             btnAdmin.Name = "btnAdmin";
             btnAdmin.Size = new Size(437, 99);
             btnAdmin.TabIndex = 3;
