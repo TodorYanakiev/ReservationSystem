@@ -10,14 +10,20 @@
 
   <ItemGroup>
     <None Remove="Resources\FormAdmin.jpg" />
+    <None Remove="Resources\FormAdminsCRUD.jpg" />
     <None Remove="Resources\FormLogInAdmin.jpg" />
     <None Remove="Resources\FormReservation.jpg" />
+    <None Remove="Resources\FormRestaurantTable.jpeg" />
     <None Remove="Resources\FormSpecialOccasion.jpg" />
+    <None Remove="Resources\FormStart.jpeg" />
     <None Remove="Resources\FormStart.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\FormAdmin.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\FormAdminsCRUD.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\FormLogInAdmin.jpg">
@@ -26,10 +32,13 @@
     <Content Include="Resources\FormReservation.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\FormRestaurantTable.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\FormSpecialOccasion.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\FormStart.jpg">
+    <Content Include="Resources\FormStart.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -51,6 +60,7 @@
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 

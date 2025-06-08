@@ -198,7 +198,9 @@ namespace PresentationLayerForms
 
         private void btnAddReservation_Click(object sender, EventArgs e)
         {
-
+            FormOperatingHours formOperatingHours = new FormOperatingHours(new OperatingHourService(new RestaurantDbContext()));
+            formOperatingHours.Show();
+            this.Close();
         }
 
         private void btnOccasions_Click(object sender, EventArgs e)
@@ -213,6 +215,11 @@ namespace PresentationLayerForms
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

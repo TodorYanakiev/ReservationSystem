@@ -52,10 +52,9 @@
             btnMenu.FlatStyle = FlatStyle.Flat;
             btnMenu.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold);
             btnMenu.ForeColor = Color.Gold;
-            btnMenu.Location = new Point(114, 308);
-            btnMenu.Margin = new Padding(3, 2, 3, 2);
+            btnMenu.Location = new Point(214, 491);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(174, 48);
+            btnMenu.Size = new Size(199, 64);
             btnMenu.TabIndex = 1;
             btnMenu.Text = "Назад";
             btnMenu.UseVisualStyleBackColor = false;
@@ -68,9 +67,9 @@
             lblNotes.FlatStyle = FlatStyle.Flat;
             lblNotes.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblNotes.ForeColor = Color.White;
-            lblNotes.Location = new Point(18, 202);
+            lblNotes.Location = new Point(21, 295);
             lblNotes.Name = "lblNotes";
-            lblNotes.Size = new Size(85, 21);
+            lblNotes.Size = new Size(105, 28);
             lblNotes.TabIndex = 27;
             lblNotes.Text = "Бележки:";
             // 
@@ -81,9 +80,9 @@
             lblPhone.FlatStyle = FlatStyle.Flat;
             lblPhone.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblPhone.ForeColor = Color.White;
-            lblPhone.Location = new Point(18, 150);
+            lblPhone.Location = new Point(21, 220);
             lblPhone.Name = "lblPhone";
-            lblPhone.Size = new Size(83, 21);
+            lblPhone.Size = new Size(101, 28);
             lblPhone.TabIndex = 26;
             lblPhone.Text = "Телефон:";
             // 
@@ -94,9 +93,9 @@
             lblEmail.FlatStyle = FlatStyle.Flat;
             lblEmail.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblEmail.ForeColor = Color.White;
-            lblEmail.Location = new Point(18, 112);
+            lblEmail.Location = new Point(21, 160);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(68, 21);
+            lblEmail.Size = new Size(85, 28);
             lblEmail.TabIndex = 25;
             lblEmail.Text = "Имейл:";
             // 
@@ -107,9 +106,9 @@
             lblName.FlatStyle = FlatStyle.Flat;
             lblName.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(18, 75);
+            lblName.Location = new Point(21, 100);
             lblName.Name = "lblName";
-            lblName.Size = new Size(48, 21);
+            lblName.Size = new Size(60, 28);
             lblName.TabIndex = 24;
             lblName.Text = "Име:";
             // 
@@ -119,56 +118,50 @@
             buttonSubmitReservation.FlatStyle = FlatStyle.Flat;
             buttonSubmitReservation.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold);
             buttonSubmitReservation.ForeColor = Color.GreenYellow;
-            buttonSubmitReservation.Location = new Point(520, 362);
-            buttonSubmitReservation.Margin = new Padding(3, 2, 3, 2);
+            buttonSubmitReservation.Location = new Point(1001, 491);
             buttonSubmitReservation.Name = "buttonSubmitReservation";
-            buttonSubmitReservation.Size = new Size(174, 48);
+            buttonSubmitReservation.Size = new Size(199, 64);
             buttonSubmitReservation.TabIndex = 23;
             buttonSubmitReservation.Text = "Потвърди";
             buttonSubmitReservation.UseVisualStyleBackColor = false;
-//            buttonSubmitReservation.Click += buttonSubmitReservation_Click;
+            buttonSubmitReservation.Click += buttonSubmitReservation_Click;
             // 
             // textBoxNotes
             // 
-            textBoxNotes.Location = new Point(111, 206);
-            textBoxNotes.Margin = new Padding(3, 2, 3, 2);
+            textBoxNotes.Location = new Point(127, 301);
             textBoxNotes.Multiline = true;
             textBoxNotes.Name = "textBoxNotes";
-            textBoxNotes.Size = new Size(251, 80);
+            textBoxNotes.Size = new Size(286, 105);
             textBoxNotes.TabIndex = 22;
             // 
             // textBoxPhone
             // 
-            textBoxPhone.Location = new Point(111, 153);
-            textBoxPhone.Margin = new Padding(3, 2, 3, 2);
+            textBoxPhone.Location = new Point(127, 220);
             textBoxPhone.Name = "textBoxPhone";
-            textBoxPhone.Size = new Size(177, 23);
+            textBoxPhone.Size = new Size(202, 27);
             textBoxPhone.TabIndex = 21;
             // 
             // textBoxEmail
             // 
-            textBoxEmail.Location = new Point(111, 116);
-            textBoxEmail.Margin = new Padding(3, 2, 3, 2);
+            textBoxEmail.Location = new Point(127, 160);
             textBoxEmail.Name = "textBoxEmail";
-            textBoxEmail.Size = new Size(177, 23);
+            textBoxEmail.Size = new Size(202, 27);
             textBoxEmail.TabIndex = 20;
             textBoxEmail.TextChanged += textBoxEmail_TextChanged;
             // 
             // textBoxName
             // 
-            textBoxName.Location = new Point(111, 76);
-            textBoxName.Margin = new Padding(3, 2, 3, 2);
+            textBoxName.Location = new Point(127, 100);
             textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(177, 23);
+            textBoxName.Size = new Size(202, 27);
             textBoxName.TabIndex = 19;
             // 
             // flowLayoutCalendar
             // 
             flowLayoutCalendar.AutoScroll = true;
-            flowLayoutCalendar.Location = new Point(419, 104);
-            flowLayoutCalendar.Margin = new Padding(3, 2, 3, 2);
+            flowLayoutCalendar.Location = new Point(479, 139);
             flowLayoutCalendar.Name = "flowLayoutCalendar";
-            flowLayoutCalendar.Size = new Size(680, 254);
+            flowLayoutCalendar.Size = new Size(932, 339);
             flowLayoutCalendar.TabIndex = 18;
             flowLayoutCalendar.Paint += flowLayoutCalendar_Paint;
             // 
@@ -178,10 +171,9 @@
             buttonNextWeek.FlatStyle = FlatStyle.Flat;
             buttonNextWeek.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             buttonNextWeek.ForeColor = Color.White;
-            buttonNextWeek.Location = new Point(312, 146);
-            buttonNextWeek.Margin = new Padding(3, 2, 3, 2);
+            buttonNextWeek.Location = new Point(357, 195);
             buttonNextWeek.Name = "buttonNextWeek";
-            buttonNextWeek.Size = new Size(96, 38);
+            buttonNextWeek.Size = new Size(110, 51);
             buttonNextWeek.TabIndex = 17;
             buttonNextWeek.Text = "Следваща седмица";
             buttonNextWeek.UseVisualStyleBackColor = false;
@@ -192,10 +184,9 @@
             buttonPrevWeek.FlatStyle = FlatStyle.Flat;
             buttonPrevWeek.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             buttonPrevWeek.ForeColor = Color.White;
-            buttonPrevWeek.Location = new Point(312, 104);
-            buttonPrevWeek.Margin = new Padding(3, 2, 3, 2);
+            buttonPrevWeek.Location = new Point(357, 139);
             buttonPrevWeek.Name = "buttonPrevWeek";
-            buttonPrevWeek.Size = new Size(96, 38);
+            buttonPrevWeek.Size = new Size(110, 51);
             buttonPrevWeek.TabIndex = 16;
             buttonPrevWeek.Text = "Предишна седмица";
             buttonPrevWeek.UseVisualStyleBackColor = false;
@@ -203,10 +194,9 @@
             // comboBoxTables
             // 
             comboBoxTables.FormattingEnabled = true;
-            comboBoxTables.Location = new Point(567, 75);
-            comboBoxTables.Margin = new Padding(3, 2, 3, 2);
+            comboBoxTables.Location = new Point(634, 97);
             comboBoxTables.Name = "comboBoxTables";
-            comboBoxTables.Size = new Size(193, 23);
+            comboBoxTables.Size = new Size(220, 28);
             comboBoxTables.TabIndex = 15;
             // 
             // lblSelectTable
@@ -216,9 +206,9 @@
             lblSelectTable.FlatStyle = FlatStyle.Flat;
             lblSelectTable.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSelectTable.ForeColor = Color.White;
-            lblSelectTable.Location = new Point(431, 75);
+            lblSelectTable.Location = new Point(479, 97);
             lblSelectTable.Name = "lblSelectTable";
-            lblSelectTable.Size = new Size(116, 21);
+            lblSelectTable.Size = new Size(145, 28);
             lblSelectTable.TabIndex = 14;
             lblSelectTable.Text = "Избери маса:";
             // 
@@ -226,22 +216,22 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(219, 15);
+            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 204);
+            label1.ForeColor = Color.GreenYellow;
+            label1.Location = new Point(479, 18);
             label1.Name = "label1";
-            label1.Size = new Size(324, 30);
+            label1.Size = new Size(501, 46);
             label1.TabIndex = 28;
             label1.Text = "Направи своята резервация";
             // 
             // FormReservation
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             BackgroundImage = Properties.Resources.FormReservation;
-            BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1111, 455);
+            BackgroundImageLayout = ImageLayout.Center;
+            ClientSize = new Size(1420, 572);
             Controls.Add(label1);
             Controls.Add(lblNotes);
             Controls.Add(lblPhone);
@@ -258,7 +248,6 @@
             Controls.Add(comboBoxTables);
             Controls.Add(lblSelectTable);
             Controls.Add(btnMenu);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "FormReservation";
             Text = "FormReservation";
             Load += ReservationForm_Load;
