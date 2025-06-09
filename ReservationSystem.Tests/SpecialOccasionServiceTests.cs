@@ -1,10 +1,14 @@
 using BusinessLogic.Services;
 using Microsoft.EntityFrameworkCore;
+using NUnit.Framework;
 using ReservationSystem.Models;
+using System;
+using System.Linq;
 
 namespace ReservationSystem.Tests
 {
-    public class SpecialOccasionServiceTests
+    [TestFixture]
+    public class SpecialOccasionService_AddTests
     {
         private RestaurantDbContext _context;
         private SpecialOccasionService _service;
@@ -13,7 +17,7 @@ namespace ReservationSystem.Tests
         public void Setup()
         {
             var options = new DbContextOptionsBuilder<RestaurantDbContext>()
-                .UseInMemoryDatabase("TestDb")
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()) 
                 .Options;
 
             _context = new RestaurantDbContext(options);
@@ -28,73 +32,66 @@ namespace ReservationSystem.Tests
         }
 
         [Test]
-        public void AddSpecialOccasion_ShouldSaveOccasion()
+        public void AddSpecialOccasion_ValidOccasion_ShouldBeSaved()
         {
             var occasion = new SpecialOccasion
             {
                 TableId = 1,
-                Description = "Birthday",
+                Description = "Test Birthday",
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now.AddHours(2)
             };
 
             _service.AddSpecialOccasion(occasion);
+
             var result = _context.SpecialOccasions.FirstOrDefault();
-
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.Description, Is.EqualTo("Birthday"));
+            Assert.That(result.Description, Is.EqualTo("Test Birthday"));
         }
 
         [Test]
-        public void GetOccasionById_ShouldReturnCorrect()
+        public void AddSpecialOccasion_NullOccasion_ShouldThrow()
         {
-            var occasion = new SpecialOccasion { TableId = 2, Description = "Anniversary" };
-            _context.SpecialOccasions.Add(occasion);
-            _context.SaveChanges();
-
-            var result = _service.GetOccasionById(occasion.Id);
-
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Description, Is.EqualTo("Anniversary"));
+            Assert.Throws<NullReferenceException>(() =>
+            {
+                _service.AddSpecialOccasion(null!);
+            });
         }
 
         [Test]
-        public void DeleteOccasion_ShouldRemoveItem()
+        public void AddSpecialOccasion_MissingDescription_ShouldBeSaved()
         {
-            var occasion = new SpecialOccasion { TableId = 3, Description = "Remove me" };
-            _context.SpecialOccasions.Add(occasion);
-            _context.SaveChanges();
+            var occasion = new SpecialOccasion
+            {
+                TableId = 2,
+                Description = null, // allowed if DB allows nulls
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now.AddHours(1)
+            };
 
-            var deleted = _service.DeleteOccasion(occasion.Id);
+            _service.AddSpecialOccasion(occasion);
 
-            Assert.That(deleted, Is.True);
-            Assert.That(_context.SpecialOccasions.Find(occasion.Id), Is.Null);
+            var saved = _context.SpecialOccasions.FirstOrDefault();
+            Assert.That(saved, Is.Not.Null);
+            Assert.That(saved.Description, Is.Null);
         }
 
         [Test]
-        public void UpdateOccasion_ShouldUpdateFields()
+        public void AddSpecialOccasion_StartTimeAfterEndTime_ShouldBeSaved()
         {
-            var occasion = new SpecialOccasion { TableId = 4, Description = "Old" };
-            _context.SpecialOccasions.Add(occasion);
-            _context.SaveChanges();
+            var occasion = new SpecialOccasion
+            {
+                TableId = 3,
+                Description = "Backwards Time",
+                StartTime = DateTime.Now.AddHours(3),
+                EndTime = DateTime.Now
+            };
 
-            occasion.Description = "Updated";
-            var updated = _service.UpdateOccasion(occasion);
+            _service.AddSpecialOccasion(occasion);
 
-            Assert.That(updated, Is.True);
-            Assert.That(_context.SpecialOccasions.Find(occasion.Id)?.Description, Is.EqualTo("Updated"));
-        }
-
-        [Test]
-        public void GetAllOccasions_ShouldReturnAll()
-        {
-            _context.SpecialOccasions.Add(new SpecialOccasion { TableId = 1, Description = "One" });
-            _context.SpecialOccasions.Add(new SpecialOccasion { TableId = 2, Description = "Two" });
-            _context.SaveChanges();
-
-            var list = _service.GetAllOccasions();
-
-            Assert.That(list.Count, Is.EqualTo(2));
+            var saved = _context.SpecialOccasions.FirstOrDefault();
+            Assert.That(saved, Is.Not.Null);
+            Assert.That(saved.Description, Is.EqualTo("Backwards Time"));
         }
     }
 }

@@ -4,11 +4,14 @@ using System;
 using BusinessLogic.Services.Email;
 using PresentationLayerConsole;
 
-class Programm
+namespace PresentationLayerConsole
 {
-    public static async Task Main(String[] args)
+    class Program
     {
-        Display display = new Display();
-        display.Start();
+        public static async Task Main(String[] args)
+        {
+            Display display = new();
+            display.Start();
+        }
     }
 }
