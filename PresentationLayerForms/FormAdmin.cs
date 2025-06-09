@@ -56,12 +56,6 @@ namespace PresentationLayerForms
                 lbl.AutoSize = true;
                 lbl.Location = new Point(10, 10);
 
-                Button btnEdit = new Button();
-                btnEdit.Text = "Редактирай";
-                btnEdit.Location = new Point(400, 5);
-                btnEdit.Size = new Size(100, 30);
-                btnEdit.Tag = reservation.Id;
-
                 Button btnDelete = new Button();
                 btnDelete.Text = "Изтрий";
                 btnDelete.Location = new Point(500, 5);
@@ -70,7 +64,6 @@ namespace PresentationLayerForms
                 btnDelete.Click += BtnDelete_Click;
 
                 reservationPanel.Controls.Add(lbl);
-                reservationPanel.Controls.Add(btnEdit);
                 reservationPanel.Controls.Add(btnDelete);
 
                 flowLayoutPanel1.Controls.Add(reservationPanel);
@@ -196,13 +189,6 @@ namespace PresentationLayerForms
             this.Close();
         }
 
-        private void btnAddReservation_Click(object sender, EventArgs e)
-        {
-            FormOperatingHours formOperatingHours = new FormOperatingHours(new OperatingHourService(new RestaurantDbContext()));
-            formOperatingHours.Show();
-            this.Close();
-        }
-
         private void btnOccasions_Click(object sender, EventArgs e)
         {
             FormSpecialOccasion formSpecialOccasion = new FormSpecialOccasion();
@@ -222,6 +208,13 @@ namespace PresentationLayerForms
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnOperatingHour_Click(object sender, EventArgs e)
+        {
+            FormOperatingHours formOperatingHours = new FormOperatingHours(new OperatingHourService(new RestaurantDbContext()));
+            formOperatingHours.Show();
+            this.Close();
         }
     }
 }
