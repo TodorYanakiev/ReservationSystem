@@ -22,11 +22,6 @@ namespace PresentationLayerForms
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAdminLogIn_Click(object sender, EventArgs e)
         {
             string username = textBoxUsernameAdmin.Text;
@@ -40,17 +35,7 @@ namespace PresentationLayerForms
 
             FormAdmin formAdmin = new FormAdmin();
             formAdmin.Show();
-            this.Close();
-        }
-
-        private void textBoxUsernameAdmin_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxPasswordAdmin_TextChanged(object sender, EventArgs e)
-        {
-
+            this.Hide();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -58,11 +43,6 @@ namespace PresentationLayerForms
             FormStart formStart = new FormStart();
             formStart.Show();
             this.Close();
-        }
-
-        private void FormLogInAdmin_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

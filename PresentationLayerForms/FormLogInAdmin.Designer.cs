@@ -67,7 +67,7 @@
             textBoxUsernameAdmin.Name = "textBoxUsernameAdmin";
             textBoxUsernameAdmin.Size = new Size(287, 27);
             textBoxUsernameAdmin.TabIndex = 3;
-            textBoxUsernameAdmin.TextChanged += textBoxUsernameAdmin_TextChanged;
+            textBoxUsernameAdmin.Text = "\r\n";
             // 
             // textBoxPasswordAdmin
             // 
@@ -76,7 +76,6 @@
             textBoxPasswordAdmin.PasswordChar = '*';
             textBoxPasswordAdmin.Size = new Size(287, 27);
             textBoxPasswordAdmin.TabIndex = 5;
-            textBoxPasswordAdmin.TextChanged += textBoxPasswordAdmin_TextChanged;
             // 
             // label3
             // 
@@ -89,7 +88,6 @@
             label3.Size = new Size(184, 54);
             label3.TabIndex = 4;
             label3.Text = "Парола:";
-            label3.Click += label3_Click;
             // 
             // btnAdminLogIn
             // 
@@ -135,7 +133,6 @@
             Controls.Add(label1);
             Name = "FormLogInAdmin";
             Text = "FormLogInAdmin";
-            Load += FormLogInAdmin_Load;
             ResumeLayout(false);
             PerformLayout();
         }
