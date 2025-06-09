@@ -53,11 +53,11 @@
             // 
             tabCreateOccasion.Controls.Add(tabPage1);
             tabCreateOccasion.Controls.Add(tabPage2);
-            tabCreateOccasion.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            tabCreateOccasion.Location = new Point(82, 72);
+            tabCreateOccasion.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            tabCreateOccasion.Location = new Point(151, 79);
             tabCreateOccasion.Name = "tabCreateOccasion";
             tabCreateOccasion.SelectedIndex = 0;
-            tabCreateOccasion.Size = new Size(758, 303);
+            tabCreateOccasion.Size = new Size(1141, 352);
             tabCreateOccasion.TabIndex = 0;
             // 
             // tabPage1
@@ -71,19 +71,19 @@
             tabPage1.Controls.Add(lblEnd);
             tabPage1.Controls.Add(lblStart);
             tabPage1.Controls.Add(lblTable);
-            tabPage1.Location = new Point(4, 32);
+            tabPage1.Location = new Point(4, 37);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(750, 267);
+            tabPage1.Size = new Size(1133, 311);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Добави";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // btnAddOccasion
             // 
-            btnAddOccasion.Font = new Font("Segoe UI Variable Text", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAddOccasion.Font = new Font("Segoe UI Variable Text", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAddOccasion.ForeColor = Color.Olive;
-            btnAddOccasion.Location = new Point(567, 199);
+            btnAddOccasion.Location = new Point(932, 235);
             btnAddOccasion.Name = "btnAddOccasion";
             btnAddOccasion.Size = new Size(167, 58);
             btnAddOccasion.TabIndex = 8;
@@ -93,86 +93,87 @@
             // 
             // txtOccasionDescription
             // 
-            txtOccasionDescription.Location = new Point(500, 31);
+            txtOccasionDescription.Location = new Point(728, 38);
             txtOccasionDescription.Multiline = true;
             txtOccasionDescription.Name = "txtOccasionDescription";
-            txtOccasionDescription.Size = new Size(234, 146);
+            txtOccasionDescription.Size = new Size(354, 146);
             txtOccasionDescription.TabIndex = 7;
             // 
             // dtpEndTime
             // 
             dtpEndTime.CustomFormat = "dd.MM.yyyy HH:mm";
             dtpEndTime.Format = DateTimePickerFormat.Custom;
-            dtpEndTime.Location = new Point(133, 176);
+            dtpEndTime.Location = new Point(203, 238);
             dtpEndTime.Name = "dtpEndTime";
-            dtpEndTime.Size = new Size(250, 30);
+            dtpEndTime.Size = new Size(250, 34);
             dtpEndTime.TabIndex = 6;
             // 
             // dtpStartTime
             // 
             dtpStartTime.CustomFormat = "dd.MM.yyyy HH:mm";
             dtpStartTime.Format = DateTimePickerFormat.Custom;
-            dtpStartTime.Location = new Point(133, 114);
+            dtpStartTime.Location = new Point(203, 162);
             dtpStartTime.Name = "dtpStartTime";
-            dtpStartTime.Size = new Size(250, 30);
+            dtpStartTime.Size = new Size(250, 34);
             dtpStartTime.TabIndex = 5;
             // 
             // cmbTables
             // 
             cmbTables.FormattingEnabled = true;
-            cmbTables.Location = new Point(193, 38);
+            cmbTables.Location = new Point(302, 45);
             cmbTables.Name = "cmbTables";
-            cmbTables.Size = new Size(151, 31);
+            cmbTables.Size = new Size(151, 36);
             cmbTables.TabIndex = 4;
             cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
             // 
             // lblDescription
             // 
             lblDescription.AutoSize = true;
-            lblDescription.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblDescription.Location = new Point(380, 34);
+            lblDescription.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDescription.Location = new Point(549, 41);
             lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(114, 28);
+            lblDescription.Size = new Size(159, 38);
             lblDescription.TabIndex = 3;
             lblDescription.Text = "Описание:";
+            lblDescription.Click += lblDescription_Click;
             // 
             // lblEnd
             // 
             lblEnd.AutoSize = true;
-            lblEnd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblEnd.Location = new Point(24, 174);
+            lblEnd.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEnd.Location = new Point(58, 232);
             lblEnd.Name = "lblEnd";
-            lblEnd.Size = new Size(66, 28);
+            lblEnd.Size = new Size(93, 38);
             lblEnd.TabIndex = 2;
             lblEnd.Text = "Край:";
             // 
             // lblStart
             // 
             lblStart.AutoSize = true;
-            lblStart.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblStart.Location = new Point(24, 114);
+            lblStart.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblStart.Location = new Point(58, 156);
             lblStart.Name = "lblStart";
-            lblStart.Size = new Size(90, 28);
+            lblStart.Size = new Size(127, 38);
             lblStart.TabIndex = 1;
             lblStart.Text = "Начало:";
             // 
             // lblTable
             // 
             lblTable.AutoSize = true;
-            lblTable.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            lblTable.Location = new Point(24, 34);
+            lblTable.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTable.Location = new Point(40, 41);
             lblTable.Name = "lblTable";
-            lblTable.Size = new Size(163, 28);
+            lblTable.Size = new Size(225, 38);
             lblTable.TabIndex = 0;
             lblTable.Text = "Изберете маса:";
             // 
             // tabPage2
             // 
             tabPage2.Controls.Add(flowOccasions);
-            tabPage2.Location = new Point(4, 32);
+            tabPage2.Location = new Point(4, 37);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(750, 267);
+            tabPage2.Size = new Size(1133, 311);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Всички";
             tabPage2.UseVisualStyleBackColor = true;
@@ -183,19 +184,19 @@
             flowOccasions.FlowDirection = FlowDirection.TopDown;
             flowOccasions.Location = new Point(15, 6);
             flowOccasions.Name = "flowOccasions";
-            flowOccasions.Size = new Size(717, 255);
+            flowOccasions.Size = new Size(1104, 299);
             flowOccasions.TabIndex = 0;
             flowOccasions.WrapContents = false;
             // 
             // btnHomeMenu
             // 
-            btnHomeMenu.BackColor = Color.Olive;
+            btnHomeMenu.BackColor = Color.White;
             btnHomeMenu.FlatStyle = FlatStyle.Flat;
-            btnHomeMenu.Font = new Font("Segoe UI Variable Display", 13F, FontStyle.Bold);
-            btnHomeMenu.ForeColor = SystemColors.Control;
-            btnHomeMenu.Location = new Point(110, 398);
+            btnHomeMenu.Font = new Font("Segoe UI Variable Display", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHomeMenu.ForeColor = Color.Goldenrod;
+            btnHomeMenu.Location = new Point(278, 461);
             btnHomeMenu.Name = "btnHomeMenu";
-            btnHomeMenu.Size = new Size(246, 76);
+            btnHomeMenu.Size = new Size(347, 77);
             btnHomeMenu.TabIndex = 1;
             btnHomeMenu.Text = "Начално меню";
             btnHomeMenu.UseVisualStyleBackColor = false;
@@ -203,13 +204,13 @@
             // 
             // btnAdminMenu
             // 
-            btnAdminMenu.BackColor = Color.Olive;
+            btnAdminMenu.BackColor = Color.White;
             btnAdminMenu.FlatStyle = FlatStyle.Flat;
-            btnAdminMenu.Font = new Font("Segoe UI Variable Display", 13F, FontStyle.Bold);
-            btnAdminMenu.ForeColor = SystemColors.Control;
-            btnAdminMenu.Location = new Point(563, 398);
+            btnAdminMenu.Font = new Font("Segoe UI Variable Display", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAdminMenu.ForeColor = Color.Goldenrod;
+            btnAdminMenu.Location = new Point(822, 461);
             btnAdminMenu.Name = "btnAdminMenu";
-            btnAdminMenu.Size = new Size(246, 76);
+            btnAdminMenu.Size = new Size(347, 77);
             btnAdminMenu.TabIndex = 2;
             btnAdminMenu.Text = "Администраторско меню";
             btnAdminMenu.UseVisualStyleBackColor = false;
@@ -219,11 +220,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(307, 9);
+            label1.Location = new Point(558, 26);
             label1.Name = "label1";
-            label1.Size = new Size(331, 46);
+            label1.Size = new Size(359, 50);
             label1.TabIndex = 3;
             label1.Text = "Специални поводи";
             // 
@@ -234,7 +235,7 @@
             BackColor = SystemColors.Control;
             BackgroundImage = Properties.Resources.FormSpecialOccasion;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(923, 497);
+            ClientSize = new Size(1420, 572);
             Controls.Add(label1);
             Controls.Add(btnAdminMenu);
             Controls.Add(btnHomeMenu);

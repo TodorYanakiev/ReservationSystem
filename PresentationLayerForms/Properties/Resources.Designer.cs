@@ -73,6 +73,16 @@ namespace PresentationLayerForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FormAdminsCRUD {
+            get {
+                object obj = ResourceManager.GetObject("FormAdminsCRUD", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FormLogInAdmin {
             get {
                 object obj = ResourceManager.GetObject("FormLogInAdmin", resourceCulture);
@@ -86,6 +96,16 @@ namespace PresentationLayerForms.Properties {
         internal static System.Drawing.Bitmap FormReservation {
             get {
                 object obj = ResourceManager.GetObject("FormReservation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FormRestaurantTable {
+            get {
+                object obj = ResourceManager.GetObject("FormRestaurantTable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

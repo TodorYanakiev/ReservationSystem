@@ -64,14 +64,32 @@ namespace PresentationLayerConsole
 
         private void AddUser()
         {
-            Console.Write("Потребителско име: ");
-            string username = Console.ReadLine()!;
+            string username;
+            do
+            {
+                Console.Write("Потребителско име: ");
+                username = Console.ReadLine()!;
+                if (string.IsNullOrWhiteSpace(username))
+                    Console.WriteLine("Потребителското име не може да е празно.");
+            } while (string.IsNullOrWhiteSpace(username));
 
-            Console.Write("Парола: ");
-            string password = Console.ReadLine()!;
+            string password;
+            do
+            {
+                Console.Write("Парола: ");
+                password = Console.ReadLine()!;
+                if (string.IsNullOrWhiteSpace(password))
+                    Console.WriteLine("Паролата не може да е празна.");
+            } while (string.IsNullOrWhiteSpace(password));
 
-            Console.Write("Роля (Admin/User): ");
-            string role = Console.ReadLine()!;
+            string role;
+            do
+            {
+                Console.Write("Роля (Admin/User): ");
+                role = Console.ReadLine()!.ToLower();
+                if (!IsValidRole(role))
+                    Console.WriteLine("Невалидна роля. Моля въведете 'Admin' или 'User'.");
+            } while (!IsValidRole(role));
 
             var user = new User
             {
@@ -83,6 +101,7 @@ namespace PresentationLayerConsole
             bool added = _userService.AddUser(user);
             Console.WriteLine(added ? "Потребителят е добавен успешно." : "Потребителското име вече съществува.");
         }
+
 
         private void ViewUsers()
         {
@@ -112,19 +131,35 @@ namespace PresentationLayerConsole
 
             Console.Write($"Ново потребителско име (текущо: {user.Username}): ");
             string? newUsername = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(newUsername)) user.Username = newUsername;
+            if (!string.IsNullOrWhiteSpace(newUsername))
+                user.Username = newUsername;
 
-            Console.Write("Нова парола: ");
-            string newPassword = Console.ReadLine()!;
+            string newPassword;
+            do
+            {
+                Console.Write("Нова парола: ");
+                newPassword = Console.ReadLine()!;
+                if (string.IsNullOrWhiteSpace(newPassword))
+                    Console.WriteLine("Паролата не може да е празна.");
+            } while (string.IsNullOrWhiteSpace(newPassword));
             user.Password = newPassword;
 
             Console.Write($"Нова роля (текуща: {user.Role}): ");
             string? newRole = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(newRole)) user.Role = newRole;
+            if (!string.IsNullOrWhiteSpace(newRole))
+            {
+                if (!IsValidRole(newRole))
+                {
+                    Console.WriteLine("Невалидна роля. Допустими: Admin, User.");
+                    return;
+                }
+                user.Role = newRole;
+            }
 
             bool updated = _userService.UpdateUser(user);
             Console.WriteLine(updated ? "Потребителят е обновен успешно." : "Неуспешна редакция. Потребителското име може да е заето.");
         }
+
 
         private void DeleteUser()
         {
@@ -142,14 +177,34 @@ namespace PresentationLayerConsole
 
         private void ValidateLogin()
         {
-            Console.Write("Потребителско име: ");
-            string username = Console.ReadLine()!;
+            string username;
+            do
+            {
+                Console.Write("Потребителско име: ");
+                username = Console.ReadLine()!;
+                if (string.IsNullOrWhiteSpace(username))
+                    Console.WriteLine("Потребителското име не може да е празно.");
+            } while (string.IsNullOrWhiteSpace(username));
 
-            Console.Write("Парола: ");
-            string password = Console.ReadLine()!;
+            string password;
+            do
+            {
+                Console.Write("Парола: ");
+                password = Console.ReadLine()!;
+                if (string.IsNullOrWhiteSpace(password))
+                    Console.WriteLine("Паролата не може да е празна.");
+            } while (string.IsNullOrWhiteSpace(password));
 
             bool isValid = _userService.ValidateLogin(username, password);
             Console.WriteLine(isValid ? "Входът е успешен." : "Грешно потребителско име или парола.");
         }
+
+
+        private bool IsValidRole(string role)
+        {
+            return role.Equals("Admin", StringComparison.OrdinalIgnoreCase) ||
+                   role.Equals("User", StringComparison.OrdinalIgnoreCase);
+        }
+
     }
 }

@@ -41,11 +41,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Transparent;
-            label1.Location = new Point(200, 50);
+            label1.Location = new Point(413, 46);
             label1.Name = "label1";
-            label1.Size = new Size(491, 50);
+            label1.Size = new Size(580, 60);
             label1.TabIndex = 1;
             label1.Text = "Администраторски вход";
             // 
@@ -53,17 +53,17 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Segoe UI", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Aqua;
-            label2.Location = new Point(100, 172);
+            label2.Location = new Point(231, 170);
             label2.Name = "label2";
-            label2.Size = new Size(318, 38);
+            label2.Size = new Size(447, 54);
             label2.TabIndex = 2;
             label2.Text = "Потребителско име:";
             // 
             // textBoxUsernameAdmin
             // 
-            textBoxUsernameAdmin.Location = new Point(490, 174);
+            textBoxUsernameAdmin.Location = new Point(787, 197);
             textBoxUsernameAdmin.Name = "textBoxUsernameAdmin";
             textBoxUsernameAdmin.Size = new Size(287, 27);
             textBoxUsernameAdmin.TabIndex = 3;
@@ -71,7 +71,7 @@
             // 
             // textBoxPasswordAdmin
             // 
-            textBoxPasswordAdmin.Location = new Point(490, 269);
+            textBoxPasswordAdmin.Location = new Point(787, 309);
             textBoxPasswordAdmin.Name = "textBoxPasswordAdmin";
             textBoxPasswordAdmin.PasswordChar = '*';
             textBoxPasswordAdmin.Size = new Size(287, 27);
@@ -82,11 +82,11 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Segoe UI", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.PaleTurquoise;
-            label3.Location = new Point(278, 258);
+            label3.Location = new Point(494, 282);
             label3.Name = "label3";
-            label3.Size = new Size(130, 38);
+            label3.Size = new Size(184, 54);
             label3.TabIndex = 4;
             label3.Text = "Парола:";
             label3.Click += label3_Click;
@@ -95,11 +95,11 @@
             // 
             btnAdminLogIn.BackColor = Color.Transparent;
             btnAdminLogIn.FlatStyle = FlatStyle.Flat;
-            btnAdminLogIn.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAdminLogIn.Font = new Font("Segoe UI Variable Display", 22.2F, FontStyle.Bold);
             btnAdminLogIn.ForeColor = Color.Thistle;
-            btnAdminLogIn.Location = new Point(650, 370);
+            btnAdminLogIn.Location = new Point(980, 439);
             btnAdminLogIn.Name = "btnAdminLogIn";
-            btnAdminLogIn.Size = new Size(199, 64);
+            btnAdminLogIn.Size = new Size(299, 89);
             btnAdminLogIn.TabIndex = 6;
             btnAdminLogIn.Text = "Вход";
             btnAdminLogIn.UseVisualStyleBackColor = false;
@@ -109,11 +109,11 @@
             // 
             btnBack.BackColor = Color.Transparent;
             btnBack.FlatStyle = FlatStyle.Flat;
-            btnBack.Font = new Font("Segoe UI Variable Display", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.Font = new Font("Segoe UI Variable Display", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBack.ForeColor = Color.Pink;
-            btnBack.Location = new Point(80, 370);
+            btnBack.Location = new Point(205, 439);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(199, 64);
+            btnBack.Size = new Size(299, 89);
             btnBack.TabIndex = 7;
             btnBack.Text = "Назад";
             btnBack.UseVisualStyleBackColor = false;
@@ -125,7 +125,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.FormLogInAdmin;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(923, 497);
+            ClientSize = new Size(1420, 572);
             Controls.Add(btnBack);
             Controls.Add(btnAdminLogIn);
             Controls.Add(textBoxPasswordAdmin);
