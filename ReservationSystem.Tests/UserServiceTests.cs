@@ -46,7 +46,7 @@ namespace ReservationSystem.Tests
             var result = _service.AddUser(user);
 
             Assert.That(result, Is.True);
-            Assert.Equals(3, _context.Users.Count());
+            Assert.That(_context.Users.Count(), Is.EqualTo(3));
             Assert.That(_context.Users.Any(u => u.Username == "charlie"), Is.True);
         }
 
@@ -58,41 +58,35 @@ namespace ReservationSystem.Tests
             var result = _service.AddUser(user);
 
             Assert.That(result, Is.False);
-            Assert.Equals(2, _context.Users.Count());
+            Assert.That(_context.Users.Count(), Is.EqualTo(2));
         }
 
         [Test]
         public void GetAllUsers_ShouldReturnAllUsers()
         {
             var users = _service.GetAllUsers();
-
-            Assert.Equals(2, users.Count);
+            Assert.That(users.Count, Is.EqualTo(2));
         }
 
         [Test]
         public void GetUserById_ExistingId_ShouldReturnUser()
         {
             var user = _service.GetUserById(1);
-
-            Assert.That(user, Is.False);
-            Assert.Equals("alice", user.Username);
+            Assert.That(user.Username, Is.EqualTo("alice"));
         }
 
         [Test]
         public void GetUserById_NonExistingId_ShouldReturnNull()
         {
             var user = _service.GetUserById(999);
-
-            Assert.That(user, Is.False);
+            Assert.That(user, Is.Null);
         }
 
         [Test]
         public void GetUserByUsername_Existing_ShouldReturnUser()
         {
             var user = _service.GetUserByUsername("bob");
-
-            Assert.That(user, Is.False);
-            Assert.Equals(2, user.Id);
+            Assert.That(user.Id, Is.EqualTo(2));
         }
 
         [Test]
@@ -100,7 +94,7 @@ namespace ReservationSystem.Tests
         {
             var user = _service.GetUserByUsername("ghost");
 
-            Assert.That(user, Is.False);
+            Assert.That(user, Is.Null);
         }
 
         [Test]
@@ -116,13 +110,14 @@ namespace ReservationSystem.Tests
 
             var result = _service.UpdateUser(updatedUser);
 
-            Assert.That(result, Is.False);
+            Assert.That(result, Is.True);
 
             var fromDb = _context.Users.Find(1);
-            Assert.Equals("alice_updated", fromDb.Username);
-            Assert.Equals("SuperAdmin", fromDb.Role);
-            Assert.That("newpass" == fromDb.Password, Is.False); 
+            Assert.That(fromDb.Username, Is.EqualTo("alice_updated"));
+            Assert.That(fromDb.Role, Is.EqualTo("SuperAdmin"));
+            Assert.That(fromDb.Password, Is.Not.EqualTo("newpass"));
         }
+
 
         [Test]
         public void UpdateUser_UsernameConflict_ShouldFail()
@@ -160,8 +155,7 @@ namespace ReservationSystem.Tests
         public void DeleteUser_Existing_ShouldRemoveUser()
         {
             var result = _service.DeleteUser(1);
-
-            Assert.That(result, Is.False);
+            Assert.That(result, Is.True);
             Assert.That(_context.Users.Find(1), Is.Null);
         }
 
@@ -177,8 +171,7 @@ namespace ReservationSystem.Tests
         public void IsUsernameTaken_TakenUsername_ShouldReturnTrue()
         {
             var result = _service.IsUsernameTaken("alice");
-
-            Assert.That(result, Is.False);
+            Assert.That(result, Is.True);
         }
 
         [Test]
@@ -200,7 +193,7 @@ namespace ReservationSystem.Tests
 
             var result = _service.ValidateLogin("alice", "secret1");
 
-            Assert.That(result, Is.False);
+            Assert.That(result, Is.True);
         }
 
         [Test]
